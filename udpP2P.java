@@ -57,19 +57,7 @@ public class udpP2P
         udpBaseServer_2 server = new udpBaseServer_2("server1", game);
         server.start();
         
-        udpBaseClient_2 client;
-        if(game.getType()==0)
-        {
-            boolean found = false;
-            System.out.println("testing");
-            client = new udpBaseClient_2("client1", game, server.getIP());
-            client.start();
-        }
-        else
-        {
-            client = new udpBaseClient_2("client1", game);
-        }
-        
+        udpBaseClient_2 client = new udpBaseClient_2("client1", game);
         client.start();
         
         GameFrame gameFrame = new GameFrame(client, server, game);
