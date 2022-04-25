@@ -60,7 +60,7 @@ public class udpP2P
         udpBaseClient_2 client;
         if(game.getType()==0)
         {
-            while(!server.getFoundIP())
+            while(!game.getHostFoundIP())
             {
             }
             client = new udpBaseClient_2("client1", game, server.getIP());
@@ -70,7 +70,8 @@ public class udpP2P
             client = new udpBaseClient_2("client1", game);
         }
         
-        GameFrame gameFrame = new GameFrame(client, server, game);
         client.start();
+        
+        GameFrame gameFrame = new GameFrame(client, server, game);
     }
 }

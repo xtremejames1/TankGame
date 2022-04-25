@@ -47,10 +47,10 @@ public class udpBaseServer_2 implements Runnable
                         {
                             ip = InetAddress.getByName(data(receive).toString().substring(3));
                             foundIP=true;
+                            game.HostFoundIP();
                             System.out.println("Connected to "+ip);
                         }
                     }
-                    System.out.println("phase 1");
                     game.setPhase(1);
                 }
                 if(game.getPhase()==1)

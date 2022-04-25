@@ -13,7 +13,7 @@ public class gameInfo
     
     private String name;
     
-    private boolean confirm;
+    private boolean confirm, hostFoundIP;
     
     /**
      * Constructor for objects of class gameInfo
@@ -26,6 +26,7 @@ public class gameInfo
         remoteTank = r;
         phase = 0;
         name = n;
+        hostFoundIP=false;
     }
     
     public int getPhase()
@@ -61,6 +62,15 @@ public class gameInfo
     public void setConfirm(boolean c)
     {
         confirm = c;
+    }
+    
+    public void HostFoundIP()
+    {
+        hostFoundIP=true;
+    }
+    public boolean getHostFoundIP()
+    {
+        return hostFoundIP;
     }
     
     public boolean getConfirm()
