@@ -1,3 +1,4 @@
+import java.net.InetAddress;
 
 /**
  * Write a description of class gameInfo here.
@@ -12,6 +13,8 @@ public class gameInfo
     private Tank localTank, remoteTank;
     
     private String name;
+    
+    private InetAddress clientIP;
     
     private boolean confirm, hostFoundIP;
     
@@ -64,8 +67,19 @@ public class gameInfo
         confirm = c;
     }
     
+    public void setClientIP(InetAddress i)
+    {
+        clientIP = i;
+    }
+    
+    public InetAddress getClientIP()
+    {
+        return clientIP;
+    }
+    
     public void HostFoundIP()
     {
+        System.out.println("Found client");
         hostFoundIP=true;
     }
     public boolean getHostFoundIP()

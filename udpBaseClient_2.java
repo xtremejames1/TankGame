@@ -29,6 +29,7 @@ public class udpBaseClient_2 implements Runnable
     }
     public udpBaseClient_2(String name, gameInfo g, InetAddress i)
     {
+        System.out.println("Host client initialized");
         threadName = name;
         game = g;
         ip = i;
@@ -58,6 +59,15 @@ public class udpBaseClient_2 implements Runnable
                             new DatagramPacket(buf, buf.length, ip, 1234);
                         
                         ds.send(DpSend);
+                    }
+                    else
+                    {
+                        boolean found = false;
+                        while(!found)
+                        {
+                            found = game.getHostFoundIP();
+                        }
+                        ip=game.getClientIP();
                     }
                     System.out.println("Connected to "+ip);
                     game.setPhase(1);

@@ -60,9 +60,8 @@ public class udpP2P
         udpBaseClient_2 client;
         if(game.getType()==0)
         {
-            while(!game.getHostFoundIP())
-            {
-            }
+            boolean found = false;
+            System.out.println("testing");
             client = new udpBaseClient_2("client1", game, server.getIP());
             client.start();
         }

@@ -45,9 +45,10 @@ public class udpBaseServer_2 implements Runnable
                         ds.receive(DpReceive);
                         if(data(receive).toString().contains("ip:"))
                         {
-                            ip = InetAddress.getByName(data(receive).toString().substring(4));
+                            ip = InetAddress.getByName(data(receive).toString().substring(3));
                             foundIP=true;
                             game.HostFoundIP();
+                            game.setClientIP(ip);
                             System.out.println("Connected to "+ip);
                         }
                     }
