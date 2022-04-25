@@ -67,13 +67,14 @@ public class udpBaseClient_2 implements Runnable
                         {
                             found = game.getHostFoundIP();
                         }
-                        ip=game.getClientIP();
+                        ip=InetAddress.getByName(game.getClientIP().toString().substring(1));
                     }
                     System.out.println("Connected to "+ip);
                     game.setPhase(1);
                 }
                 if(game.getPhase()==1)
                 {
+                    System.out.println("Phase 1");
                     /*
                     if(game.getType()==0)
                     {
@@ -105,6 +106,7 @@ public class udpBaseClient_2 implements Runnable
                 }
                 if(game.getPhase()==2)
                 {
+                    System.out.println("Phase 2");
                     PointerInfo a = MouseInfo.getPointerInfo();
                     Point b = a.getLocation();
                     mouseX = (int) b.getX();
