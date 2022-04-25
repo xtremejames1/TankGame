@@ -60,8 +60,34 @@ public class udpBaseClient_2 implements Runnable
                         ds.send(DpSend);
                     }
                     System.out.println("Connected to "+ip);
+                    game.setPhase(1);
                 }
-                
+                if(game.getPhase()==1)
+                {
+                    if(game.getType()==0)
+                    {
+                        while(!(game.getPhase()==2))
+                        {
+                            buf = ("confirm").getBytes();
+                        
+                            DatagramPacket DpSend =
+                                new DatagramPacket(buf, buf.length, ip, 1234);
+                        
+                            ds.send(DpSend);
+                        }
+                    }
+                    else if(game.getType()==1)
+                    {
+                        while(!game.getConfirm()){}
+                        buf = ("confirm").getBytes();
+                    
+                        DatagramPacket DpSend =
+                            new DatagramPacket(buf, buf.length, ip, 1234);
+                    
+                        ds.send(DpSend);
+                        game.setPhase(2);
+                    }
+                }
                 if(game.getPhase()==2)
                 {
                     PointerInfo a = MouseInfo.getPointerInfo();

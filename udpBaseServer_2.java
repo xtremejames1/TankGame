@@ -47,32 +47,59 @@ public class udpBaseServer_2 implements Runnable
                         {
                             ip = InetAddress.getByName(data(receive).toString().substring(4));
                             foundIP=true;
+                            System.out.println("Connected to "+ip);
+                        }
+                    }
+                    game.setPhase(1);
+                }
+                if(game.getPhase()==1)
+                {
+                    if(game.getType()==0)
+                    {
+                        String confirm = "";
+                        while(!confirm.equals("confirm"))
+                        {
+                            DpReceive = new DatagramPacket(receive, receive.length);
+        
+                            ds.receive(DpReceive);
+                            
+                            confirm = data(receive).toString();
+                
+                            receive = new byte[65535];
+                        }
+                        game.setPhase(2);
+                    }
+                    else if(game.getType()==1)
+                    {
+                        while(!(game.getPhase()==2))
+                        {
+                            DpReceive = new DatagramPacket(receive, receive.length);
+                            ds.receive(DpReceive);
+                            
+                            game.setConfirm(data(receive).toString().equals("confirm"));
+                
+                            receive = new byte[65535];
                         }
                     }
                 }
-    
-                // Step 2 : create a DatgramPacket to receive the data.
-                DpReceive = new DatagramPacket(receive, receive.length);
-    
-                // Step 3 : revieve the data in byte buffer.
-                ds.receive(DpReceive);
-                
-                String tankData = data(receive).toString();
-                
-                String tankXString = tankData.substring(tankData.indexOf("tankX")+7,tankData.indexOf(" tankY"));
-                String tankYString = tankData.substring(tankData.indexOf("tankY")+7);
-
-                tankX = Integer.parseInt(tankXString);
-                tankY = Integer.parseInt(tankYString);
-                // Exit the server if the client sends "bye"
-                if (data(receive).toString().equals("bye"))
+                if(game.getPhase()==2)
                 {
-                    System.out.println("Client sent bye.....EXITING");
-                    break;
-                }
+                // Step 2 : create a DatgramPacket to receive the data.
+                    DpReceive = new DatagramPacket(receive, receive.length);
+        
+                    // Step 3 : revieve the data in byte buffer.
+                    ds.receive(DpReceive);
+                    
+                    String tankData = data(receive).toString();
+                    
+                    String tankXString = tankData.substring(tankData.indexOf("tankX")+7,tankData.indexOf(" tankY"));
+                    String tankYString = tankData.substring(tankData.indexOf("tankY")+7);
     
-                // Clear the buffer after every message.
-                receive = new byte[65535];
+                    tankX = Integer.parseInt(tankXString);
+                    tankY = Integer.parseInt(tankYString);
+        
+                    receive = new byte[65535];
+                }   
             }
         }
         catch(IOException ioe)
