@@ -14,7 +14,7 @@ public class gameInfo
     
     private String name;
     
-    private InetAddress clientIP;
+    private String clientIP;
     
     private boolean confirm, hostFoundIP;
     
@@ -67,12 +67,12 @@ public class gameInfo
         confirm = c;
     }
     
-    public void setClientIP(InetAddress i)
+    public void setClientIP(String i)
     {
         clientIP = i;
     }
     
-    public InetAddress getClientIP()
+    public String getClientIP()
     {
         return clientIP;
     }

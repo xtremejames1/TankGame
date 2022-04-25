@@ -51,13 +51,15 @@ public class udpBaseClient_2 implements Runnable
                     if(game.getType()==1)
                     {
                         System.out.println("What IP would you like to connect to?\n");
-                        String i = sc.nextLine();
+                        String i = sc.nextLine();    
+                        ip = InetAddress.getByName(i);
                         String local;
                         try(final DatagramSocket socket = new DatagramSocket()){
-                          socket.connect(InetAddress.getByName("8.8.8.8"), 10002);
+                          socket.connect(ip, 10002);
                           local = socket.getLocalAddress().getHostAddress();
                         }
 
+                        
                         buf = ("ip:"+local).getBytes();
                         
                         DatagramPacket DpSend =
@@ -73,7 +75,7 @@ public class udpBaseClient_2 implements Runnable
                         {
                             found = game.getHostFoundIP();
                         }
-                        ip=InetAddress.getByName(game.getClientIP().toString().substring(1));
+                        ip=InetAddress.getByName(game.getClientIP());
                     }
                     System.out.println("Connected to "+ip);
                 }

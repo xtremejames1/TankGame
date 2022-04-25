@@ -13,7 +13,7 @@ public class udpBaseServer_2 implements Runnable
     private String threadName;
     private int tankX, tankY;
     
-    private InetAddress ip;
+    private String ip;
     
     private boolean foundIP;
     
@@ -45,7 +45,7 @@ public class udpBaseServer_2 implements Runnable
                         ds.receive(DpReceive);
                         if(data(receive).toString().contains("ip:"))
                         {
-                            ip = InetAddress.getByName(data(receive).toString().substring(3));
+                            ip = data(receive).toString().substring(3);
                             game.HostFoundIP();
                             game.setClientIP(ip);
                             System.out.println("Client IP: "+ip);
@@ -139,7 +139,7 @@ public class udpBaseServer_2 implements Runnable
         return tankY;
     }
     
-    public InetAddress getIP()
+    public String getIP()
     {
         return ip;
     }
