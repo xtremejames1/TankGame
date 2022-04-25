@@ -39,17 +39,17 @@ public class udpBaseServer_2 implements Runnable
                 if(game.getPhase() == 0 && game.getType() == 0)
                 {
                     foundIP = false;
-                    while(!foundIP)
+                    while(true)
                     {
                         DpReceive = new DatagramPacket(receive, receive.length);
                         ds.receive(DpReceive);
                         if(data(receive).toString().contains("ip:"))
                         {
                             ip = InetAddress.getByName(data(receive).toString().substring(3));
-                            foundIP=true;
                             game.HostFoundIP();
                             game.setClientIP(ip);
                             System.out.println("Connected to "+ip);
+                            break;
                         }
                     }
                     game.setPhase(1);
