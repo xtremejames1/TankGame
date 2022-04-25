@@ -59,6 +59,7 @@ public class udpBaseClient_2 implements Runnable
                             new DatagramPacket(buf, buf.length, ip, 1234);
                         
                         ds.send(DpSend);
+                        game.setPhase(1);
                     }
                     else
                     {
@@ -70,7 +71,6 @@ public class udpBaseClient_2 implements Runnable
                         ip=InetAddress.getByName(game.getClientIP().toString().substring(1));
                     }
                     System.out.println("Connected to "+ip);
-                    game.setPhase(1);
                 }
                 if(game.getPhase()==1)
                 {
