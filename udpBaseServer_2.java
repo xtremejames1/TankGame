@@ -23,6 +23,7 @@ public class udpBaseServer_2 implements Runnable
     {
         threadName = name;
         game = g;
+        foundIP = false;
     }
     
     public void run()
@@ -38,8 +39,7 @@ public class udpBaseServer_2 implements Runnable
             {
                 if(game.getPhase() == 0 && game.getType() == 0)
                 {
-                    foundIP = false;
-                    while(true)
+                    while(!foundIP)
                     {
                         DpReceive = new DatagramPacket(receive, receive.length);
                         ds.receive(DpReceive);
@@ -49,13 +49,14 @@ public class udpBaseServer_2 implements Runnable
                             game.HostFoundIP();
                             game.setClientIP(ip);
                             System.out.println("Client IP: "+ip);
-                            break;
+                            game.setPhase(1);
+                            foundIP = true;
                         }
                     }
-                    game.setPhase(1);
                 }
                 if(game.getPhase()==1)
                 {
+                    System.out.println("Server phase 1");
                     /*
                     if(game.getType()==0)
                     {

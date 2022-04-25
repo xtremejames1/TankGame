@@ -59,6 +59,7 @@ public class gameInfo
     
     public void setPhase(int p)
     {
+        System.out.println("Phase set to "+p);
         phase = p;
     }
     

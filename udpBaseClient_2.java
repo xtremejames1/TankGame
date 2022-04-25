@@ -74,14 +74,15 @@ public class udpBaseClient_2 implements Runnable
                         while(!found)
                         {
                             found = game.getHostFoundIP();
+                            System.out.println("searching...");
                         }
-                        ip=InetAddress.getByName(game.getClientIP());
+                        ip=InetAddress.getByName(game.getClientIP().substring(1));
                     }
                     System.out.println("Connected to "+ip);
                 }
                 if(game.getPhase()==1)
                 {
-                    System.out.println("Phase 1");
+                    System.out.println("Client Phase 1");
                     /*
                     if(game.getType()==0)
                     {
@@ -109,6 +110,10 @@ public class udpBaseClient_2 implements Runnable
                         game.setPhase(2);
                     }
                     */
+                    if(game.getType()==0)
+                    {
+                        System.out.println("ip is "+ip);
+                    }
                    game.setPhase(2);
                 }
                 if(game.getPhase()==2)
