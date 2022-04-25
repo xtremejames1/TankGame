@@ -64,6 +64,7 @@ public class udpP2P
             {
             }
             client = new udpBaseClient_2("client1", game, server.getIP());
+            client.start();
         }
         else
         {
