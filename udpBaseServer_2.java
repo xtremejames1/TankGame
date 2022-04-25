@@ -48,7 +48,7 @@ public class udpBaseServer_2 implements Runnable
                             ip = InetAddress.getByName(data(receive).toString().substring(3));
                             game.HostFoundIP();
                             game.setClientIP(ip);
-                            System.out.println("Connected to "+ip);
+                            System.out.println("Client IP: "+ip);
                             break;
                         }
                     }
@@ -103,7 +103,6 @@ public class udpBaseServer_2 implements Runnable
                     tankX = Integer.parseInt(tankXString);
                     tankY = Integer.parseInt(tankYString);
                     
-                    System.out.println(tankData);
                     
                     receive = new byte[65535];
                 }   
