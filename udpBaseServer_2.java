@@ -85,6 +85,7 @@ public class udpBaseServer_2 implements Runnable
                         }
                     }
                     */
+                   game.setPhase(2);
                 }
                 if(game.getPhase()==2)
                 {
@@ -101,7 +102,9 @@ public class udpBaseServer_2 implements Runnable
     
                     tankX = Integer.parseInt(tankXString);
                     tankY = Integer.parseInt(tankYString);
-        
+                    
+                    System.out.println(tankData);
+                    
                     receive = new byte[65535];
                 }   
             }
