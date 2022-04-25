@@ -64,8 +64,10 @@ public class udpBaseClient_2 implements Runnable
                 }
                 if(game.getPhase()==1)
                 {
+                    /*
                     if(game.getType()==0)
                     {
+                        
                         while(!(game.getPhase()==2))
                         {
                             buf = ("confirm").getBytes();
@@ -75,6 +77,7 @@ public class udpBaseClient_2 implements Runnable
                         
                             ds.send(DpSend);
                         }
+                        
                     }
                     else if(game.getType()==1)
                     {
@@ -87,6 +90,8 @@ public class udpBaseClient_2 implements Runnable
                         ds.send(DpSend);
                         game.setPhase(2);
                     }
+                    */
+                   game.setPhase(2);
                 }
                 if(game.getPhase()==2)
                 {

@@ -55,7 +55,7 @@ public class udpBaseServer_2 implements Runnable
                 }
                 if(game.getPhase()==1)
                 {
-                    
+                    /*
                     if(game.getType()==0)
                     {
                         String confirm = "";
@@ -83,6 +83,7 @@ public class udpBaseServer_2 implements Runnable
                             receive = new byte[65535];
                         }
                     }
+                    */
                 }
                 if(game.getPhase()==2)
                 {
