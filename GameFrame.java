@@ -16,6 +16,7 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
     private udpBaseServer_2 server;
     private gameInfo game;
     public GameFrame(udpBaseClient_2 c, udpBaseServer_2 s, gameInfo g) {
+        System.out.println("Starting display...");
         client = c;
         server = s;
         game = g;
