@@ -14,11 +14,13 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
     private Timer timer;
     private udpBaseClient_2 client;
     private udpBaseServer_2 server;
-    public GameFrame(udpBaseClient_2 c, udpBaseServer_2 s) {
+    private gameInfo game;
+    public GameFrame(udpBaseClient_2 c, udpBaseServer_2 s, gameInfo g) {
         client = c;
         server = s;
-        localTank = new Tank(50, 50, Color.blue);
-        remoteTank = new Tank(50,50, Color.red);
+        game = g;
+        localTank = game.getLocalTank();
+        remoteTank = game.getRemoteTank();
         this.setLayout(null);
         this.setFocusable(true);
         this.setSize(1000, 1000);

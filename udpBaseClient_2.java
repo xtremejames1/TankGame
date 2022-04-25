@@ -19,11 +19,19 @@ public class udpBaseClient_2 implements Runnable
     private InetAddress ip;
     
     
-    private JFrame f;
+    private gameInfo game;
+    
     private int mouseX, mouseY, tankX, tankY;
-    public udpBaseClient_2(String name)
+    public udpBaseClient_2(String name, gameInfo g)
     {
         threadName = name;
+        game = g;
+    }
+    public udpBaseClient_2(String name, gameInfo g, InetAddress i)
+    {
+        threadName = name;
+        game = g;
+        ip = i;
     }
     
     public void run()
@@ -34,38 +42,47 @@ public class udpBaseClient_2 implements Runnable
             Scanner sc = new Scanner(System.in);
             DatagramSocket ds = new DatagramSocket();
             
-            System.out.println("What IP would you like to connect to?\n");
-            String i = sc.nextLine();
-            
-            ip = InetAddress.getByName(i);
-            System.out.println("Connected to "+i);
             byte buf[] = null;
             while (true)
             {
-                PointerInfo a = MouseInfo.getPointerInfo();
-                Point b = a.getLocation();
-                mouseX = (int) b.getX();
-                mouseY = (int) b.getY();
-                //String inp = sc.nextLine();
-                String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+tankX+" tankY: "+tankY;
-                // convert the String input into the byte array.
-                buf = inp.getBytes();
-    
-                // Step 2 : Create the datagramPacket for sending
-                // the data.
-                DatagramPacket DpSend =
-                    new DatagramPacket(buf, buf.length, ip, 1234);
-    
-                // Step 3 : invoke the send call to actually send
-                // the data.
-                ds.send(DpSend);
-                // break the loop if user enters "bye"
+                if(game.getPhase()==0)
+                {
+                    if(game.getType()==1)
+                    {
+                        System.out.println("What IP would you like to connect to?\n");
+                        String i = sc.nextLine();    
+                        ip = InetAddress.getByName(i);
+                        buf = ("ip:"+ip.getHostAddress()).getBytes();
+                        
+                        DatagramPacket DpSend =
+                            new DatagramPacket(buf, buf.length, ip, 1234);
+                        
+                        ds.send(DpSend);
+                    }
+                    System.out.println("Connected to "+ip);
+                }
                 
-
-                
-                if (inp.equals("bye"))
-                    break;
-                
+                if(game.getPhase()==2)
+                {
+                    PointerInfo a = MouseInfo.getPointerInfo();
+                    Point b = a.getLocation();
+                    mouseX = (int) b.getX();
+                    mouseY = (int) b.getY();
+                    //String inp = sc.nextLine();
+                    String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+tankX+" tankY: "+tankY;
+                    // convert the String input into the byte array.
+                    buf = inp.getBytes();
+        
+                    // Step 2 : Create the datagramPacket for sending
+                    // the data.
+                    DatagramPacket DpSend =
+                        new DatagramPacket(buf, buf.length, ip, 1234);
+        
+                    // Step 3 : invoke the send call to actually send
+                    // the data.
+                    ds.send(DpSend);
+                    // break the loop if user enters "bye"
+                }   
             }
         }
         catch (IOException ioe)

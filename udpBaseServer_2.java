@@ -13,10 +13,16 @@ public class udpBaseServer_2 implements Runnable
     private String threadName;
     private int tankX, tankY;
     
+    private InetAddress ip;
     
-    public udpBaseServer_2(String name)
+    private boolean foundIP;
+    
+    private gameInfo game;
+    
+    public udpBaseServer_2(String name, gameInfo g)
     {
         threadName = name;
+        game = g;
     }
     
     public void run()
@@ -30,6 +36,20 @@ public class udpBaseServer_2 implements Runnable
             DatagramPacket DpReceive = null;
             while (true)
             {
+                if(game.getPhase() == 0 && game.getType() == 0)
+                {
+                    foundIP = false;
+                    while(!foundIP)
+                    {
+                        DpReceive = new DatagramPacket(receive, receive.length);
+                        ds.receive(DpReceive);
+                        if(data(receive).toString().contains("ip:"))
+                        {
+                            ip = InetAddress.getByName(data(receive).toString().substring(4));
+                            foundIP=true;
+                        }
+                    }
+                }
     
                 // Step 2 : create a DatgramPacket to receive the data.
                 DpReceive = new DatagramPacket(receive, receive.length);
@@ -84,6 +104,16 @@ public class udpBaseServer_2 implements Runnable
     public int getTankY()
     {
         return tankY;
+    }
+    
+    public InetAddress getIP()
+    {
+        return ip;
+    }
+    
+    public boolean getFoundIP()
+    {
+        return foundIP;
     }
     
     public void start()
