@@ -64,14 +64,13 @@ public class udpP2P
             {
             }
             client = new udpBaseClient_2("client1", game, server.getIP());
-            client.start();
         }
         else
         {
             client = new udpBaseClient_2("client1", game);
-            client.start();
         }
         
         GameFrame gameFrame = new GameFrame(client, server, game);
+        client.start();
     }
 }

@@ -52,7 +52,7 @@ public class udpBaseClient_2 implements Runnable
                         System.out.println("What IP would you like to connect to?\n");
                         String i = sc.nextLine();    
                         ip = InetAddress.getByName(i);
-                        buf = ("ip:"+ip.getHostAddress()).getBytes();
+                        buf = ("ip:"+ip.getLocalHost()).getBytes();
                         
                         DatagramPacket DpSend =
                             new DatagramPacket(buf, buf.length, ip, 1234);
