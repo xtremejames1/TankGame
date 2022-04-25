@@ -9,6 +9,10 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.io.InputStreamReader;
 
 public class udpBaseClient_2 implements Runnable
 {
@@ -18,6 +22,9 @@ public class udpBaseClient_2 implements Runnable
     private DatagramSocket ds;
     private InetAddress ip;
     
+    private Socket clientSocket;
+    private PrintWriter out;
+    private BufferedReader in;
     
     private gameInfo game;
     
@@ -51,8 +58,15 @@ public class udpBaseClient_2 implements Runnable
                     if(game.getType()==1)
                     {
                         System.out.println("What IP would you like to connect to?\n");
-                        String i = sc.nextLine();    
+                        String i = sc.nextLine();     
                         ip = InetAddress.getByName(i);
+                        
+                        clientSocket = new Socket(ip, 1234);
+                        out = new PrintWriter(clientSocket.getOutputStream(), true);
+                        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                        
+                        out.println(clientSocket.getLocalAddress());
+                        /*
                         String local;
                         try(final DatagramSocket socket = new DatagramSocket()){
                           socket.connect(ip, 10002);
@@ -66,6 +80,7 @@ public class udpBaseClient_2 implements Runnable
                             new DatagramPacket(buf, buf.length, ip, 1234);
                         
                         ds.send(DpSend);
+                        */
                         game.setPhase(1);
                     }
                     else

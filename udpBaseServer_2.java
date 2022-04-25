@@ -5,6 +5,11 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.net.SocketException;
+import java.net.ServerSocket;
+import java.io.BufferedReader;
+import java.io.PrintWriter;
+import java.net.Socket;
+import java.io.InputStreamReader;
 
 public class udpBaseServer_2 implements Runnable
 {
@@ -16,6 +21,11 @@ public class udpBaseServer_2 implements Runnable
     private String ip;
     
     private boolean foundIP;
+    
+    private ServerSocket socket;
+    private Socket clientSocket;
+    private PrintWriter out;
+    private BufferedReader in;
     
     private gameInfo game;
     
@@ -39,6 +49,15 @@ public class udpBaseServer_2 implements Runnable
             {
                 if(game.getPhase() == 0 && game.getType() == 0)
                 {
+                    socket = new ServerSocket(1234);
+                    clientSocket = socket.accept();
+                    out = new PrintWriter(clientSocket.getOutputStream(), true);
+                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    ip = in.readLine();
+                    System.out.println("Recieved Client IP: "+ip);
+                    game.setClientIP(ip);
+                    game.setPhase(1);
+                    /*
                     while(!foundIP)
                     {
                         DpReceive = new DatagramPacket(receive, receive.length);
@@ -53,6 +72,7 @@ public class udpBaseServer_2 implements Runnable
                             foundIP = true;
                         }
                     }
+                    */
                 }
                 if(game.getPhase()==1)
                 {
