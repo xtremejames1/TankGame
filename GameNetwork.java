@@ -30,6 +30,8 @@ public class GameNetwork
     
     private InetAddress remoteIP;
     
+    private GameInfo game;
+    
     private int type;
     
     private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY;
@@ -37,8 +39,9 @@ public class GameNetwork
     /**
      * Constructor for objects of class GameNetwork
      */
-    public GameNetwork(int t)
+    public GameNetwork(int t, GameInfo g)
     {
+        game = g;
         type=t;
     }
     
@@ -50,11 +53,17 @@ public class GameNetwork
             {
                 socket = new ServerSocket(1235);
                 clientSocket = socket.accept();
+                
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                
                 remoteIP = InetAddress.getByName(in.readLine());
-                out.println("received IP");
-                System.out.println("Server received client IP: "+remoteIP);
+                game.setRName(in.readLine());
+                
+                out.println(game.getName());
+                
+                System.out.println(game.getRName()+" connected to host with IP "+remoteIP+".");
+                
                 notify();
             }
         }
@@ -66,7 +75,6 @@ public class GameNetwork
         {
             DpReceive = new DatagramPacket(receive, receive.length);
 
-            // Step 3 : revieve the data in byte buffer.
             serverUDP.receive(DpReceive);
             
             String tankData = data(receive).toString();
@@ -98,7 +106,12 @@ public class GameNetwork
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 
-                out.println(clientSocket.getLocalAddress().getHostAddress());
+                out.println(clientSocket.getLocalAddress().getHostAddress());                
+                out.println(game.getName());
+                
+                game.setRName(in.readLine());
+                
+                System.out.println("Client connected to "+game.getRName()+" with IP "+remoteIP+".");
             }
             else if(type==0)
             {

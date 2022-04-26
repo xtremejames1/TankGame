@@ -20,7 +20,7 @@ public class Game
         Scanner sc = new Scanner(System.in);
         boolean run = true;
         String name = "";
-        System.out.println("Username: ");
+        System.out.println("Player Name: ");
         name = sc.nextLine();
         System.out.println("Type 1 to host a game, type 2 to connect to a game");
         int type = 0;
@@ -43,28 +43,20 @@ public class Game
                 System.out.println("Bad input.");
             }
         }
-        GameInfo game = new GameInfo(type, new Tank(50,50, Color.blue), new Tank(50,50, Color.red), name);
+        GameInfo game = new GameInfo(new Tank(50,50, Color.blue), new Tank(50,50, Color.red), name);
         
         if(type == 0)
         {
             System.out.println("Started game. Waiting for connection...");
         }
         
-        GameNetwork net = new GameNetwork(type);
+        GameNetwork net = new GameNetwork(type, game);
         
         ClientThread client = new ClientThread(net);
         ServerThread server = new ServerThread(net);
         
         client.start();
         server.start();
-        //udpBaseServer_2 server = new udpBaseServer_2("server1", game);
-        //server.start();
-        
-        //if(game.getType()==0)
-            //while(!server.getFoundIP()){}
-        
-        //udpBaseClient_2 client = new udpBaseClient_2("client1", game);
-        //client.start();
         
         GameFrame gameFrame = new GameFrame(net, game);
     }
