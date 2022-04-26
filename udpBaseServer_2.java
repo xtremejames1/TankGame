@@ -76,9 +76,6 @@ public class udpBaseServer_2 implements Runnable
                     }
                     */
                 }
-                if(game.getPhase()==1)
-                {
-                    System.out.println("Server phase 1");
                     /*
                     if(game.getType()==0)
                     {
@@ -108,18 +105,7 @@ public class udpBaseServer_2 implements Runnable
                         }
                     }
                     */
-                   game.setPhase(2);
-                }
-                if(game.getPhase()==2)
-                {
                 // Step 2 : create a DatgramPacket to receive the data.
-                    System.out.println(in.readLine());
-                    out.println("Server Response");
-                    
-                    if(game.getType()==1)
-                    {
-                        System.out.println("work");
-                    }
                     
                     DpReceive = new DatagramPacket(receive, receive.length);
         
@@ -136,7 +122,7 @@ public class udpBaseServer_2 implements Runnable
                     
                     
                     receive = new byte[65535];
-                }   
+                
             }
         }
         catch(IOException ioe)

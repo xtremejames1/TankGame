@@ -134,14 +134,12 @@ public class udpBaseClient_2 implements Runnable
                 }
                 //if(game.getPhase()==2)
                 //{
-                    out.println("Client Test");
-                    System.out.println(in.readLine());
                     PointerInfo a = MouseInfo.getPointerInfo();
                     Point b = a.getLocation();
                     mouseX = (int) b.getX();
                     mouseY = (int) b.getY();
                     //String inp = sc.nextLine();
-                    String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+tankX+" tankY: "+tankY;
+                    String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+game.getLocalTank().getX()+" tankY: "+game.getLocalTank().getY();
                     // convert the String input into the byte array.
                     buf = inp.getBytes();
         
