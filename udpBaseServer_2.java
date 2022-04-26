@@ -54,9 +54,11 @@ public class udpBaseServer_2 implements Runnable
                     out = new PrintWriter(clientSocket.getOutputStream(), true);
                     in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     ip = in.readLine();
-                    System.out.println("Recieved Client IP: "+ip);
+                    out.println("received IP");
+                    System.out.println("Received Client IP: "+ip);
                     game.setClientIP(ip);
                     game.setPhase(1);
+                    game.HostFoundIP();
                     /*
                     while(!foundIP)
                     {

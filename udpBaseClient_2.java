@@ -81,7 +81,8 @@ public class udpBaseClient_2 implements Runnable
                         
                         ds.send(DpSend);
                         */
-                        game.setPhase(1);
+                        if(in.readLine().equals("received IP"))
+                            game.setPhase(1);
                     }
                     else
                     {
