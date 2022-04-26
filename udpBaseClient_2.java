@@ -132,9 +132,10 @@ public class udpBaseClient_2 implements Runnable
                     }
                    game.setPhase(2);
                 }
-                if(game.getPhase()==2)
-                {
-                    out.println("test");
+                //if(game.getPhase()==2)
+                //{
+                    out.println("Client Test");
+                    System.out.println(in.readLine());
                     PointerInfo a = MouseInfo.getPointerInfo();
                     Point b = a.getLocation();
                     mouseX = (int) b.getX();
@@ -152,8 +153,7 @@ public class udpBaseClient_2 implements Runnable
                     // Step 3 : invoke the send call to actually send
                     // the data.
                     ds.send(DpSend);
-                    // break the loop if user enters "bye"
-                }   
+                //}   
             }
         }
         catch (IOException ioe)

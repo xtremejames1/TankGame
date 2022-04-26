@@ -114,6 +114,13 @@ public class udpBaseServer_2 implements Runnable
                 {
                 // Step 2 : create a DatgramPacket to receive the data.
                     System.out.println(in.readLine());
+                    out.println("Server Response");
+                    
+                    if(game.getType()==1)
+                    {
+                        System.out.println("work");
+                    }
+                    
                     DpReceive = new DatagramPacket(receive, receive.length);
         
                     // Step 3 : revieve the data in byte buffer.
