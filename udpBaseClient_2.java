@@ -134,6 +134,7 @@ public class udpBaseClient_2 implements Runnable
                 }
                 if(game.getPhase()==2)
                 {
+                    System.out.println(in.readLine());
                     PointerInfo a = MouseInfo.getPointerInfo();
                     Point b = a.getLocation();
                     mouseX = (int) b.getX();
