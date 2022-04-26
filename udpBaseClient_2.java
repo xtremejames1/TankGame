@@ -139,7 +139,7 @@ public class udpBaseClient_2 implements Runnable
                     mouseX = (int) b.getX();
                     mouseY = (int) b.getY();
                     //String inp = sc.nextLine();
-                    String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+game.getLocalTank().getX()+" tankY: "+game.getLocalTank().getY();
+                    String inp = "x: "+mouseX+" y: "+mouseY+" tankX: "+tankX+" tankY: "+tankY;
                     // convert the String input into the byte array.
                     buf = inp.getBytes();
         
