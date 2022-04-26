@@ -12,14 +12,13 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
     static final int FRAME_WIDTH = 1000;
     private boolean up, down, left, right;
     private Timer timer;
-    private udpBaseClient_2 client;
-    private udpBaseServer_2 server;
-    private gameInfo game;
-    public GameFrame(udpBaseClient_2 c, udpBaseServer_2 s, gameInfo g) {
+    private GameNetwork net;
+    private GameInfo game;
+    
+    public GameFrame(GameNetwork n, GameInfo g) {
         System.out.println("Starting display...");
-        client = c;
-        server = s;
         game = g;
+        net = n;
         localTank = game.getLocalTank();
         remoteTank = game.getRemoteTank();
         this.setLayout(null);
@@ -87,8 +86,8 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
            localTank.setLocation(localTank.getX() + 5, localTank.getY());
        }
        
-       remoteTank.setLocation(server.getTankX(), server.getTankY());
-       client.setTankLoc(localTank.getX(),localTank.getY());
+       remoteTank.setLocation(net.getRTankX(), net.getRTankY());
+       net.setTankLoc(localTank.getX(),localTank.getY());
     }
 
     public boolean isValidCoordinate() {

@@ -26,20 +26,13 @@ public class udpBaseClient_2 implements Runnable
     private PrintWriter out;
     private BufferedReader in;
     
-    private gameInfo game;
+    private GameInfo game;
     
     private int mouseX, mouseY, tankX, tankY;
-    public udpBaseClient_2(String name, gameInfo g)
+    public udpBaseClient_2(String name, GameInfo g)
     {
         threadName = name;
         game = g;
-    }
-    public udpBaseClient_2(String name, gameInfo g, InetAddress i)
-    {
-        System.out.println("Host client initialized");
-        threadName = name;
-        game = g;
-        ip = i;
     }
     
     public void run()

@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=udpBaseServer_2
 comment1.params=name\ g
-comment1.target=udpBaseServer_2(java.lang.String,\ gameInfo)
+comment1.target=udpBaseServer_2(java.lang.String,\ GameInfo)
 comment2.params=
 comment2.target=void\ run()
 comment3.params=a

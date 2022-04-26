@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=GameFrame
-comment1.params=c\ s\ g
-comment1.target=GameFrame(udpBaseClient_2,\ udpBaseServer_2,\ gameInfo)
+comment1.params=n\ g
+comment1.target=GameFrame(GameNetwork,\ GameInfo)
 comment2.params=e
 comment2.target=void\ keyPressed(java.awt.event.KeyEvent)
 comment3.params=e

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=GameNetwork
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ GameNetwork\ here.\r\n\r\n\ @author\ (your\ name)\r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=t
+comment1.target=GameNetwork(int)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ GameNetwork\r\n
+comment2.params=
+comment2.target=void\ server()
+comment3.params=
+comment3.target=void\ client()
+comment4.params=a
+comment4.target=java.lang.StringBuilder\ data(byte[])
+comment5.params=
+comment5.target=int\ getRTankX()
+comment6.params=
+comment6.target=int\ getRTankY()
+comment7.params=x\ y
+comment7.target=void\ setTankLoc(int,\ int)
+numComments=8

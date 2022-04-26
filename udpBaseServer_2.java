@@ -27,9 +27,9 @@ public class udpBaseServer_2 implements Runnable
     private PrintWriter out;
     private BufferedReader in;
     
-    private gameInfo game;
+    private GameInfo game;
     
-    public udpBaseServer_2(String name, gameInfo g)
+    public udpBaseServer_2(String name, GameInfo g)
     {
         threadName = name;
         game = g;
@@ -54,6 +54,7 @@ public class udpBaseServer_2 implements Runnable
                 out.println("received IP");
                 System.out.println("Server received client IP: "+ip);
                 game.setRemoteIP(ip);
+                foundIP=true;
                 game.HostFoundIP();
             }
             

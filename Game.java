@@ -14,7 +14,7 @@ import java.net.InetAddress;
 import java.util.Scanner;
 import java.awt.*;
 
-public class udpP2P
+public class Game
 {
     public static void main(String[] args) throws InterruptedException{
         Scanner sc = new Scanner(System.in);
@@ -43,23 +43,29 @@ public class udpP2P
                 System.out.println("Bad input.");
             }
         }
-        gameInfo game = new gameInfo(type, new Tank(50,50, Color.blue), new Tank(50,50, Color.red), name);
+        GameInfo game = new GameInfo(type, new Tank(50,50, Color.blue), new Tank(50,50, Color.red), name);
         
         if(type == 0)
         {
             System.out.println("Started game. Waiting for connection...");
         }
         
+        GameNetwork net = new GameNetwork(type);
         
-        udpBaseServer_2 server = new udpBaseServer_2("server1", game);
+        ServerThread server = new ServerThread(net);
+        ClientThread client = new ClientThread(net);
+        
         server.start();
-        
-        if(game.getType()==0)
-            while(!game.getHostFoundIP()){}
-        
-        udpBaseClient_2 client = new udpBaseClient_2("client1", game);
         client.start();
+        //udpBaseServer_2 server = new udpBaseServer_2("server1", game);
+        //server.start();
         
-        GameFrame gameFrame = new GameFrame(client, server, game);
+        //if(game.getType()==0)
+            //while(!server.getFoundIP()){}
+        
+        //udpBaseClient_2 client = new udpBaseClient_2("client1", game);
+        //client.start();
+        
+        GameFrame gameFrame = new GameFrame(net, game);
     }
 }

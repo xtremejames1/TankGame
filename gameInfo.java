@@ -1,12 +1,12 @@
 import java.net.InetAddress;
 
 /**
- * Write a description of class gameInfo here.
+ * Write a description of class GameInfo here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class gameInfo
+public class GameInfo
 {
     // instance variables - replace the example below with your own
     private int type, phase;
@@ -21,9 +21,9 @@ public class gameInfo
     private boolean confirm, hostFoundIP;
     
     /**
-     * Constructor for objects of class gameInfo
+     * Constructor for objects of class GameInfo
      */
-    public gameInfo(int t, Tank l, Tank r, String n)
+    public GameInfo(int t, Tank l, Tank r, String n)
     {
         // initialise instance variables
         type = t;
