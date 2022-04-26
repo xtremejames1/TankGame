@@ -12,20 +12,21 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
     static final int FRAME_WIDTH = 1000;
     private boolean up, down, left, right;
     private Timer timer;
+    private GamePanel panel;
     private GameNetwork net;
     private GameInfo game;
     
     public GameFrame(GameNetwork n, GameInfo g) {
         System.out.println("Starting display...");
+        panel = new GamePanel();
         game = g;
         net = n;
         localTank = game.getLocalTank();
         remoteTank = game.getRemoteTank();
+        this.add(panel);
         this.setLayout(null);
         this.setFocusable(true);
         this.setSize(1000, 1000);
-        this.add(localTank);
-        this.add(remoteTank);
         this.addKeyListener(this);
         this.setTitle("Tank Game");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -90,20 +91,53 @@ public class GameFrame extends JFrame implements KeyListener, ActionListener {
        net.setTankLoc(localTank.getX(),localTank.getY());
     }
 
-    public boolean isValidCoordinate() {
+    public boolean isValidCoordinate()
+    {
         if(localTank.getX() > 0 && localTank.getY() > 0 && (localTank.getX() + localTank.getWidth() < FRAME_WIDTH) && (localTank.getY() + localTank.getHeight() < FRAME_HEIGHT)) {
             return true;
         }
         return false;
     }
-    public void startGame() {
+    public void startGame()
+    {
+        this.add(localTank);
+        this.add(remoteTank);
         up = down = left = right = false;
         timer = new Timer(1000/60, this);
         timer.start();
         localTank.setLocation(0,0);
         remoteTank.setLocation(900,900);
     }
-
+    
+    public void mainMenu()
+    {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBackground(Color.white);
+        
+        
+        JLabel title = new JLabel("Tank Game");
+        JButton host = new JButton("Host Game");
+        JButton client = new JButton("Join Game");
+        
+        this.add(title);
+        this.add(host);
+        this.add(client);
+    }
+    public void hostMenu()
+    {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setBackground(Color.white);
+        JLabel title = new JLabel("Host Game:");
+        JLabel ip = new JLabel("IP: ");
+        JLabel tcp = new JLabel("TCP: ");
+        JLabel udp = new JLabel("UDP: ");
+        
+        this.add(title);
+        this.add(ip);
+        this.add(tcp);
+        this.add(udp);
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         update();

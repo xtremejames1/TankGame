@@ -28,6 +28,8 @@ public class GameNetwork
     private BufferedReader in;
     private PrintWriter out;
     
+    private int tickrate;
+    
     private InetAddress remoteIP;
     
     private GameInfo game;
@@ -43,7 +45,17 @@ public class GameNetwork
     {
         game = g;
         type=t;
+        tickrate = 64;
     }
+    
+    
+    public GameNetwork(int t, GameInfo g, int tr)
+    {
+        game = g;
+        type=t;
+        tickrate = tr;
+    }
+    
     
     public void server() throws InterruptedException, IOException
     {
@@ -87,6 +99,7 @@ public class GameNetwork
             
             
             receive = new byte[65535];
+            Thread.sleep(1000/tickrate);
         }
         
     }
@@ -127,18 +140,20 @@ public class GameNetwork
         byte buf[] = null;
         while (true)
         {
-                PointerInfo a = MouseInfo.getPointerInfo();
-                Point b = a.getLocation();
-                mouseX = (int) b.getX();
-                mouseY = (int) b.getY();
-                String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
-                // convert the String input into the byte array.
-                buf = inp.getBytes();
-                
-                DatagramPacket DpSend =
-                    new DatagramPacket(buf, buf.length, remoteIP, 1234);
-                    
-                clientUDP.send(DpSend);
+            PointerInfo a = MouseInfo.getPointerInfo();
+            Point b = a.getLocation();
+            mouseX = (int) b.getX();
+            mouseY = (int) b.getY();
+            String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
+            // convert the String input into the byte array.
+            buf = inp.getBytes();
+            
+            DatagramPacket DpSend =
+                new DatagramPacket(buf, buf.length, remoteIP, 1234);
+            
+            clientUDP.send(DpSend);
+            
+            Thread.sleep(1000/tickrate);
         }
     }
     
