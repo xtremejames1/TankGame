@@ -1,3 +1,0 @@
-in display class, pass client object in constructor
-make method in client class that allows for setting location variables
-every time mouse moves, set the variables
