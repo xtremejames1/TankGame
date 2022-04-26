@@ -26,24 +26,21 @@ public class udpP2P
         int type = 0;
         while(run)
         {
-            if (sc.hasNextInt())
+            try
             {
-                if(sc.nextInt()==1||sc.nextInt()==2)
-                {
-                    type = sc.nextInt()-1;
-                    break;
-                }
-                else
+                type = sc.nextInt()-1;
+                
+                if(type!=0&&type!=1)
                 {
                     System.out.println("Bad input.");
-                    sc.next();
                     continue;
                 }
+                else
+                    run=false;
             }
-            else {
+            catch(Exception e)
+            {
                 System.out.println("Bad input.");
-                sc.next();
-                continue;
             }
         }
         gameInfo game = new gameInfo(type, new Tank(50,50, Color.blue), new Tank(50,50, Color.red), name);
@@ -56,6 +53,9 @@ public class udpP2P
         
         udpBaseServer_2 server = new udpBaseServer_2("server1", game);
         server.start();
+        
+        if(game.getType()==0)
+            while(!game.getHostFoundIP()){}
         
         udpBaseClient_2 client = new udpBaseClient_2("client1", game);
         client.start();

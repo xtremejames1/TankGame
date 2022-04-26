@@ -43,86 +43,38 @@ public class udpBaseServer_2 implements Runnable
             // Step 1 : Create a socket to listen at port 1234
             DatagramSocket ds = new DatagramSocket(1234);
             byte[] receive = new byte[65535];
-    
+            
+            if(game.getType()==0)
+            {
+                socket = new ServerSocket(1235);
+                clientSocket = socket.accept();
+                out = new PrintWriter(clientSocket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                ip = in.readLine();
+                out.println("received IP");
+                System.out.println("Server received client IP: "+ip);
+                game.setRemoteIP(ip);
+                game.HostFoundIP();
+            }
+            
             DatagramPacket DpReceive = null;
             while (true)
             {
-                if(game.getPhase() == 0 && game.getType() == 0)
-                {
-                    socket = new ServerSocket(1234);
-                    clientSocket = socket.accept();
-                    out = new PrintWriter(clientSocket.getOutputStream(), true);
-                    in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                    ip = in.readLine();
-                    out.println("received IP");
-                    System.out.println("Received Client IP: "+ip);
-                    game.setClientIP(ip);
-                    game.setPhase(1);
-                    game.HostFoundIP();
-                    /*
-                    while(!foundIP)
-                    {
-                        DpReceive = new DatagramPacket(receive, receive.length);
-                        ds.receive(DpReceive);
-                        if(data(receive).toString().contains("ip:"))
-                        {
-                            ip = data(receive).toString().substring(3);
-                            game.HostFoundIP();
-                            game.setClientIP(ip);
-                            System.out.println("Client IP: "+ip);
-                            game.setPhase(1);
-                            foundIP = true;
-                        }
-                    }
-                    */
-                }
-                    /*
-                    if(game.getType()==0)
-                    {
-                        String confirm = "";
-                        while(!confirm.equals("confirm"))
-                        {
-                            DpReceive = new DatagramPacket(receive, receive.length);
-        
-                            ds.receive(DpReceive);
-                            
-                            confirm = data(receive).toString();
-                
-                            receive = new byte[65535];
-                        }
-                        game.setPhase(2);
-                    }
-                    else if(game.getType()==1)
-                    {
-                        while(!(game.getPhase()==2))
-                        {
-                            DpReceive = new DatagramPacket(receive, receive.length);
-                            ds.receive(DpReceive);
-                            
-                            game.setConfirm(data(receive).toString().equals("confirm"));
-                
-                            receive = new byte[65535];
-                        }
-                    }
-                    */
-                // Step 2 : create a DatgramPacket to receive the data.
-                    
-                    DpReceive = new DatagramPacket(receive, receive.length);
-        
-                    // Step 3 : revieve the data in byte buffer.
-                    ds.receive(DpReceive);
-                    
-                    String tankData = data(receive).toString();
-                    
-                    String tankXString = tankData.substring(tankData.indexOf("tankX")+7,tankData.indexOf(" tankY"));
-                    String tankYString = tankData.substring(tankData.indexOf("tankY")+7);
+                DpReceive = new DatagramPacket(receive, receive.length);
     
-                    tankX = Integer.parseInt(tankXString);
-                    tankY = Integer.parseInt(tankYString);
-                    
-                    
-                    receive = new byte[65535];
+                // Step 3 : revieve the data in byte buffer.
+                ds.receive(DpReceive);
                 
+                String tankData = data(receive).toString();
+                
+                String tankXString = tankData.substring(tankData.indexOf("tankX")+7,tankData.indexOf(" tankY"));
+                String tankYString = tankData.substring(tankData.indexOf("tankY")+7);
+
+                tankX = Integer.parseInt(tankXString);
+                tankY = Integer.parseInt(tankYString);
+                
+                
+                receive = new byte[65535];
             }
         }
         catch(IOException ioe)

@@ -16,6 +16,8 @@ public class gameInfo
     
     private String clientIP;
     
+    private String remoteIP, localIP;
+    
     private boolean confirm, hostFoundIP;
     
     /**
@@ -76,6 +78,27 @@ public class gameInfo
     public String getClientIP()
     {
         return clientIP;
+    }
+    
+    public void setRemoteIP(String i)
+    {
+        remoteIP = i;
+    }
+    
+    public String getRemoteIP()
+    {
+        return remoteIP;
+    }
+    
+    
+    public void setLocalIP(String i)
+    {
+        localIP = i;
+    }
+    
+    public String getLocalIP()
+    {
+        return localIP;
     }
     
     public void HostFoundIP()
