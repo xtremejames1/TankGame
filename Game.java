@@ -52,11 +52,11 @@ public class Game
         
         GameNetwork net = new GameNetwork(type);
         
-        ServerThread server = new ServerThread(net);
         ClientThread client = new ClientThread(net);
+        ServerThread server = new ServerThread(net);
         
-        server.start();
         client.start();
+        server.start();
         //udpBaseServer_2 server = new udpBaseServer_2("server1", game);
         //server.start();
         

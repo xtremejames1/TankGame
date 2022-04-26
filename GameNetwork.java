@@ -102,7 +102,9 @@ public class GameNetwork
             }
             else if(type==0)
             {
+                System.out.println("Client thread waiting to receive IP");
                 wait();
+                System.out.println("Client thread received IP.");
             }
         }
         
