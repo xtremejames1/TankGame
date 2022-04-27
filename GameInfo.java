@@ -1,5 +1,3 @@
-import java.net.InetAddress;
-
 /**
  * Write a description of class GameInfo here.
  *
@@ -8,7 +6,7 @@ import java.net.InetAddress;
  */
 public class GameInfo
 {
-    private Tank localTank, remoteTank;
+    private final Tank localTank, remoteTank;
     
     private String name, rName;
     
