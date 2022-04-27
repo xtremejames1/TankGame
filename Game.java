@@ -1,25 +1,13 @@
-
-/**
- * Write a description of class udpP2P here.
- *
- * @author (your name)
- * @version (a version number or a date)
- */
-
-
-import java.io.IOException;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
-import java.util.Scanner;
 import java.awt.*;
+import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Game
 {
-    public static void main(String[] args) throws InterruptedException{
+    public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
         boolean run = true;
-        String name = "";
+        String name;
         System.out.println("Player Name: ");
         name = sc.nextLine();
         System.out.println("Type 1 to host a game, type 2 to connect to a game");
@@ -33,7 +21,6 @@ public class Game
                 if(type != 0 && type != 1)
                 {
                     System.out.println("Bad input.");
-                    continue;
                 }
                 else
                     run=false;
