@@ -30,7 +30,7 @@ public class Game
             {
                 type = sc.nextInt()-1;
                 
-                if(type!=0&&type!=1)
+                if(type != 0 && type != 1)
                 {
                     System.out.println("Bad input.");
                     continue;
