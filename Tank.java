@@ -11,9 +11,8 @@ public class Tank extends JPanel {
 
     }
     public void paint(Graphics g) {
-        Graphics tank = (Graphics2D) g;
-        tank.setColor(Color.RED);
-        tank.fillOval(0,0, width, height);
+        g.setColor(Color.RED);
+        g.fillOval(0,0, width, height);
     }
     public int getWidth() {
         return width;
