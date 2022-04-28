@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-import java.util.Scanner;
 import java.awt.PointerInfo;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -32,8 +31,6 @@ public class GameNetwork
     
     private int type;
     private int tcp, udp;
-
-    private boolean clientFound;
     private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY;
 
     /**
@@ -44,7 +41,6 @@ public class GameNetwork
         game = g;
         type=t;
         tickrate = 64;
-        clientFound = false;
         tcp = tcpport;
         udp = udpport;
         System.out.println("Created type "+type+" Network with ports "+tcpport+" and "+udpport);
@@ -53,7 +49,6 @@ public class GameNetwork
         game = g;
         type=t;
         tickrate = 64;
-        clientFound = false;
         tcp = tcpport;
         udp = udpport;
         remoteIP = InetAddress.getByName(ip);
@@ -92,7 +87,6 @@ public class GameNetwork
                 out.println(game.getName());
                 
                 System.out.println(game.getRName()+" connected to local host with IP "+remoteIP+".");
-                clientFound = true;
                 game.setClientFound(true);
                 notify();
             }
@@ -112,9 +106,19 @@ public class GameNetwork
             String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
             String tankYString = tankData.substring(tankData.indexOf("tY")+2);
 
+            String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY"));
+            String mouseYString = tankData.substring(tankData.indexOf("mY")+2, tankData.indexOf("tX"));
+
             rTankX = Integer.parseInt(tankXString);
             rTankY = Integer.parseInt(tankYString);
-            
+
+            rMouseX = Integer.parseInt(mouseXString);
+            rMouseY = Integer.parseInt(mouseYString);
+
+            game.getRemoteTank().setLocation(rTankX, rTankY);
+            game.getRemoteTank().setMouseLocation(rMouseX, rMouseY);
+
+
             
             receive = new byte[65535];
             Thread.sleep(1000/tickrate);
@@ -128,12 +132,6 @@ public class GameNetwork
         {
             if(type==1)
             {
-                /*
-                Scanner sc = new Scanner(System.in);
-                System.out.println("What IP would you like to connect to?\n");
-                String i = sc.nextLine();     
-                remoteIP = InetAddress.getByName(i);
-                */
                 System.out.println("Client TCP sequence started.");
                 clientSocket= new Socket(remoteIP, tcp);
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -153,14 +151,13 @@ public class GameNetwork
             {
                 System.out.println("Client thread waiting to receive IP");
                 wait();
-                clientFound = true;
                 game.setClientFound(true);
                 System.out.println("Client thread received IP.");
             }
         }
         
         System.out.println("Client connection made to "+remoteIP);
-        
+
         clientUDP = new DatagramSocket();
         byte buf[] = null;
         while (true)
@@ -197,28 +194,6 @@ public class GameNetwork
         }
         return ret;
     }
-    
-    public int getRTankX()
-    {
-        return rTankX;
-    }
-    
-    public int getRTankY()
-    {
-        return rTankY;
-    }
-    
-    public void setTankLoc(int x, int y)
-    {
-        tankX = x;
-        tankY = y;
-    }
-    public void setTCP(int t) {
-        tcp = t;
-    }
-    public void setUDP(int u) {
-        udp = u;
-    }
     public String getIP() {
         try {
             return InetAddress.getLocalHost().getHostAddress();
@@ -231,16 +206,5 @@ public class GameNetwork
     }
     public int getUDP() {
         return udp;
-    }
-    public boolean getClientFound() {
-        return clientFound;
-    }
-    public boolean setRemoteIP(String i) {
-        try {
-            remoteIP = InetAddress.getByName(i);
-            return true;
-        } catch (UnknownHostException e) {
-            return false;
-        }
     }
 }

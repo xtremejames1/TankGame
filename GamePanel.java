@@ -136,8 +136,6 @@ public class GamePanel extends JPanel implements ActionListener
             localTank.setLocation(localTank.getX() + 5, localTank.getY());
         }
 
-
-        remoteTank.setLocation(net.getRTankX(), net.getRTankY());
         this.setBackground(Color.white);
         repaint();
     }
@@ -150,7 +148,10 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.setColor(Color.white);
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         g2D.drawImage(blueTankBase, localTank.getX(), localTank.getY(), 134, 204, null);
+        g2D.drawImage(blueTankTurret, localTank.getX()+33, localTank.getY()-10, 68, 176, null);
+
         g2D.drawImage(redTankBase, remoteTank.getX(), remoteTank.getY(), 134, 204, null);
+        g2D.drawImage(redTankTurret, remoteTank.getX()+33, remoteTank.getY()-10, 68, 176, null);
     }
 
     /**
