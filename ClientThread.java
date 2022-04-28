@@ -25,4 +25,10 @@ public class ClientThread extends Thread
             System.out.println(e);
         }
     }
+    @Override
+    public void start() {
+        System.out.println("Starting client thread...");
+        super.start();
+        System.out.println("Started client thread.");
+    }
 }

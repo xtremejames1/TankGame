@@ -24,5 +24,13 @@ public class ServerThread extends Thread
         {
             System.out.println(e);
         }
+
+    }
+
+    @Override
+    public void start() {
+        System.out.println("Starting server thread...");
+        super.start();
+        System.out.println("Started server thread.");
     }
 }

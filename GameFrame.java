@@ -56,6 +56,13 @@ public class GameFrame{
     }
     public void clientStart(int tcp, int udp, String ip) throws UnknownHostException {
         net = new GameNetwork(1, game, tcp, udp, ip);
+
+        ClientThread client = new ClientThread(net);
+        ServerThread server = new ServerThread(net);
+
+        client.start();
+        server.start();
+
         game();
     }
     public void game() {

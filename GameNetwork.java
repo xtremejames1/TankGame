@@ -47,7 +47,7 @@ public class GameNetwork
         clientFound = false;
         tcp = tcpport;
         udp = udpport;
-        System.out.println("Created Network with ports"+tcpport+" and "+udpport);
+        System.out.println("Created type "+type+" Network with ports "+tcpport+" and "+udpport);
     }
     public GameNetwork(int t, GameInfo g, int tcpport, int udpport, String ip) throws UnknownHostException {
         game = g;
@@ -57,7 +57,7 @@ public class GameNetwork
         tcp = tcpport;
         udp = udpport;
         remoteIP = InetAddress.getByName(ip);
-        System.out.println("Created Network with ports"+tcpport+" and "+udpport+" and IP "+ip);
+        System.out.println("Created type "+type+" Network with ports"+tcpport+" and "+udpport+" and IP "+ip);
     }
     
     
@@ -69,21 +69,26 @@ public class GameNetwork
     }
     
     
-    public void server() throws InterruptedException, IOException
-    {
+    public void server() throws InterruptedException, IOException {
         synchronized(this)
         {
+            System.out.println("Server synchronized stage started.");
             if(type==0)
             {
+                System.out.println("Host TCP sequence started.");
                 socket = new ServerSocket(tcp);
+                System.out.println("test");
                 clientSocket = socket.accept();
-                
+                System.out.println("Host TCP network started.");
+
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-                
+
+                System.out.println("Host waiting for IP...");
                 remoteIP = InetAddress.getByName(in.readLine());
+                System.out.println("Host received IP. Host waiting for remote player name...");
                 game.setRName(in.readLine());
-                
+                System.out.println("Host received remote player name. Host sent local player name.");
                 out.println(game.getName());
                 
                 System.out.println(game.getRName()+" connected to local host with IP "+remoteIP+".");
@@ -101,7 +106,7 @@ public class GameNetwork
             DpReceive = new DatagramPacket(receive, receive.length);
 
             serverUDP.receive(DpReceive);
-            
+
             String tankData = data(receive).toString();
             
             String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
@@ -123,27 +128,33 @@ public class GameNetwork
         {
             if(type==1)
             {
+                /*
                 Scanner sc = new Scanner(System.in);
                 System.out.println("What IP would you like to connect to?\n");
                 String i = sc.nextLine();     
                 remoteIP = InetAddress.getByName(i);
-                
+                */
+                System.out.println("Client TCP sequence started.");
                 clientSocket= new Socket(remoteIP, tcp);
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                System.out.println("Client TCP network started.");
                 
                 out.println(clientSocket.getLocalAddress().getHostAddress());                
                 out.println(game.getName());
+                System.out.println("Client sent IP and local player name. Waiting for remote player name...");
                 
                 game.setRName(in.readLine());
+                System.out.println("Client received remote player name.");
                 
-                System.out.println("Client connected to "+game.getRName()+" with IP "+remoteIP+".");
+                System.out.println("Local client connected to "+game.getRName()+" with IP "+remoteIP+".");
             }
             else if(type==0)
             {
                 System.out.println("Client thread waiting to receive IP");
                 wait();
                 clientFound = true;
+                game.setClientFound(true);
                 System.out.println("Client thread received IP.");
             }
         }
