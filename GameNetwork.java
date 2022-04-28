@@ -1,8 +1,4 @@
-import java.net.DatagramSocket;
-import java.net.DatagramPacket;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.InetAddress;
+import java.net.*;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
@@ -35,17 +31,33 @@ public class GameNetwork
     private GameInfo game;
     
     private int type;
-    
+    private int tcp, udp;
+
+    private boolean clientFound;
     private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY;
 
     /**
      * Constructor for objects of class GameNetwork
      */
-    public GameNetwork(int t, GameInfo g)
+    public GameNetwork(int t, GameInfo g, int tcpport, int udpport)
     {
         game = g;
         type=t;
         tickrate = 64;
+        clientFound = false;
+        tcp = tcpport;
+        udp = udpport;
+        System.out.println("Created Network with ports"+tcpport+" and "+udpport);
+    }
+    public GameNetwork(int t, GameInfo g, int tcpport, int udpport, String ip) throws UnknownHostException {
+        game = g;
+        type=t;
+        tickrate = 64;
+        clientFound = false;
+        tcp = tcpport;
+        udp = udpport;
+        remoteIP = InetAddress.getByName(ip);
+        System.out.println("Created Network with ports"+tcpport+" and "+udpport+" and IP "+ip);
     }
     
     
@@ -63,7 +75,7 @@ public class GameNetwork
         {
             if(type==0)
             {
-                socket = new ServerSocket(1235);
+                socket = new ServerSocket(tcp);
                 clientSocket = socket.accept();
                 
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
@@ -74,13 +86,14 @@ public class GameNetwork
                 
                 out.println(game.getName());
                 
-                System.out.println(game.getRName()+" connected to host with IP "+remoteIP+".");
-                
+                System.out.println(game.getRName()+" connected to local host with IP "+remoteIP+".");
+                clientFound = true;
+                game.setClientFound(true);
                 notify();
             }
         }
         
-        serverUDP = new DatagramSocket(1234);
+        serverUDP = new DatagramSocket(udp);
         byte[] receive = new byte[65535];
         DatagramPacket DpReceive = null;
         while(true)
@@ -115,7 +128,7 @@ public class GameNetwork
                 String i = sc.nextLine();     
                 remoteIP = InetAddress.getByName(i);
                 
-                clientSocket= new Socket(remoteIP, 1235);
+                clientSocket= new Socket(remoteIP, tcp);
                 out = new PrintWriter(clientSocket.getOutputStream(), true);
                 in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                 
@@ -130,13 +143,14 @@ public class GameNetwork
             {
                 System.out.println("Client thread waiting to receive IP");
                 wait();
+                clientFound = true;
                 System.out.println("Client thread received IP.");
             }
         }
         
         System.out.println("Client connection made to "+remoteIP);
         
-        DatagramSocket clientUDP = new DatagramSocket();
+        clientUDP = new DatagramSocket();
         byte buf[] = null;
         while (true)
         {
@@ -151,7 +165,7 @@ public class GameNetwork
             buf = inp.getBytes();
             
             DatagramPacket DpSend =
-                new DatagramPacket(buf, buf.length, remoteIP, 1234);
+                new DatagramPacket(buf, buf.length, remoteIP, udp);
             
             clientUDP.send(DpSend);
             
@@ -187,5 +201,35 @@ public class GameNetwork
     {
         tankX = x;
         tankY = y;
+    }
+    public void setTCP(int t) {
+        tcp = t;
+    }
+    public void setUDP(int u) {
+        udp = u;
+    }
+    public String getIP() {
+        try {
+            return InetAddress.getLocalHost().getHostAddress();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public int getTCP() {
+        return tcp;
+    }
+    public int getUDP() {
+        return udp;
+    }
+    public boolean getClientFound() {
+        return clientFound;
+    }
+    public boolean setRemoteIP(String i) {
+        try {
+            remoteIP = InetAddress.getByName(i);
+            return true;
+        } catch (UnknownHostException e) {
+            return false;
+        }
     }
 }

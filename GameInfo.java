@@ -7,19 +7,18 @@
 public class GameInfo
 {
     private final Tank localTank, remoteTank;
-    
+    private boolean clientFound;
     private String name, rName;
-    
-    private String clientIP;
+    private int type;
     
     /**
      * Constructor for objects of class GameInfo
      */
-    public GameInfo(Tank l, Tank r, String n)
+    public GameInfo(Tank l, Tank r)
     {
         localTank = l;
         remoteTank = r;
-        name = n;
+        clientFound = false;
     }
     
     public Tank getLocalTank() {return localTank;}
@@ -29,6 +28,14 @@ public class GameInfo
     public String getName() {return name;}
     
     public String getRName() {return rName;}
-    
+    public int getType() {return type;}
+    public void setType(int t) {type = t;}
     public void setRName(String n) {rName = n;}
+    public void setName(String n) {name = n;}
+    public void setClientFound(boolean b) {
+        clientFound = b;
+    }
+    public boolean getClientFound() {
+        return clientFound;
+    }
 }
