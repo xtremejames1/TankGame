@@ -45,6 +45,6 @@ public class Game
         client.start();
         server.start();
         
-        GameFrame gameFrame = new GameFrame(net, game);
+        GameFrame gameFrame = new GameFrame(game, net);
     }
 }
