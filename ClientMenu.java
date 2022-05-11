@@ -17,11 +17,11 @@ public class ClientMenu {
 
     public ClientMenu(JFrame f, GameNetwork n, GameFrame gf) {
         f.setContentPane(panel);
+        f.setVisible(true);
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 gf.mainMenu();
-                System.out.println("t");
             }
         });
         connectButton.addActionListener(new ActionListener() {

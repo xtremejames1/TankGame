@@ -13,6 +13,8 @@ public class MainMenu {
 
     public MainMenu(JFrame f, GameInfo g, GameFrame gf) {
         f.setContentPane(panel);
+        f.setVisible(true);
+
         hostButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

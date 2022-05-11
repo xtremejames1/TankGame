@@ -15,6 +15,7 @@ public class HostMenuPanel {
         ipLabel.setText("IP: "+ip);
         tcpLabel.setText("TCP: "+tcp);
         udpLabel.setText("UDP: "+udp);
+        f.setVisible(true);
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
