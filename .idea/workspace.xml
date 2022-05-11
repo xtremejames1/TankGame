@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="TankGame:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="got bug to be fixed">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TankGame_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientMenu.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ClientThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameFrame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameNetwork.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GameNetwork.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GamePanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HostMenuPanel.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HostMenuPanel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainMenu.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ServerThread.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tank.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/TankGame.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gameInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iptest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/iptest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar/client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar/server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/jar/tester.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/TankGame_jar/TankGame.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/artifacts/TankGame_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/libraries/jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/Game.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameFrame$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameFrame.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameNetwork.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GamePanel$moveAction.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GamePanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/HostMenuPanel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/HostMenuPanel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ServerThread.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/Tank.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/TankGame.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/iptest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/client.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/server.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/tester.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/bluetankbase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/bluetankturret.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/redtankbase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/redtankturret.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/tankgame.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/bluetankbase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/bluetankturret.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/redtankbase.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/redtankturret.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/tankgame.txt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="28MPTkPuHggduXL41WaWxLtSqHv" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;228&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Game">
+    <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Game" />
+      <module name="TankGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="HostMenuPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="HostMenuPanel" />
+      <module name="TankGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MainMenuPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MainMenuPanel" />
+      <module name="TankGame" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TankGame.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/TankGame_jar/TankGame.jar" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Game" />
+        <item itemvalue="JAR Application.TankGame.jar" />
+        <item itemvalue="Application.HostMenuPanel" />
+        <item itemvalue="Application.MainMenuPanel" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="" />
+      <created>1651023496446</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1651023496446</updated>
+    </task>
+    <task id="LOCAL-00001" summary="deleted bluej files">
+      <created>1651023717058</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1651023717058</updated>
+    </task>
+    <task id="LOCAL-00002" summary="optimized a bit">
+      <created>1651024164556</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1651024164556</updated>
+    </task>
+    <task id="LOCAL-00003" summary="i was abt to change a crap ton but none of it worked">
+      <created>1651117058823</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1651117058823</updated>
+    </task>
+    <task id="LOCAL-00004" summary="got 2 tank images in and keybinds working">
+      <created>1651155633821</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1651155633821</updated>
+    </task>
+    <task id="LOCAL-00005" summary="got 2 tank images in and keybinds working">
+      <created>1651155650879</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1651155650879</updated>
+    </task>
+    <task id="LOCAL-00006" summary="multiplayer does not work with ui">
+      <created>1651173360662</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1651173360662</updated>
+    </task>
+    <task id="LOCAL-00007" summary="trying to test">
+      <created>1651173652753</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1651173652753</updated>
+    </task>
+    <task id="LOCAL-00008" summary="forgot to add line of code im so dumb i think it works now">
+      <created>1651178644424</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1651178644424</updated>
+    </task>
+    <task id="LOCAL-00009" summary="i added turrets to tanks">
+      <created>1651180487464</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1651180487464</updated>
+    </task>
+    <task id="LOCAL-00010" summary="i added turrets to tanks">
+      <created>1652209203910</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1652209203910</updated>
+    </task>
+    <task id="LOCAL-00011" summary="got bug to be fixed">
+      <created>1652297337757</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1652297337757</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="deleted bluej files" />
+    <MESSAGE value="optimized a bit" />
+    <MESSAGE value="i was abt to change a crap ton but none of it worked" />
+    <MESSAGE value="got 2 tank images in and keybinds working" />
+    <MESSAGE value="multiplayer does not work with ui" />
+    <MESSAGE value="trying to test" />
+    <MESSAGE value="forgot to add line of code im so dumb i think it works now" />
+    <MESSAGE value="i added turrets to tanks" />
+    <MESSAGE value="got bug to be fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="got bug to be fixed" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TankGame$Game.ic" NAME="Game Coverage Results" MODIFIED="1651105518261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>
