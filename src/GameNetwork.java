@@ -8,33 +8,36 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 
 /**
- * Write a description of class GameNetwork here.
+ * Adds networking functionality to the game
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author James Xiao
+ * @version 1
  */
 public class GameNetwork
 {
-    // instance variables - replace the example below with your own
-    private DatagramSocket clientUDP, serverUDP;
+    private DatagramSocket clientUDP, serverUDP; //UDP client and server socket
     
-    private ServerSocket socket;
-    private Socket clientSocket;
-    private BufferedReader in;
-    private PrintWriter out;
+    private ServerSocket socket; //TCP server socket
+    private Socket clientSocket; //TCP client socket
+    private BufferedReader in; //TCP in reader
+    private PrintWriter out; //TCP out writer
     
-    private int tickrate;
+    private int tickrate; //Tickrate of the network
     
-    private InetAddress remoteIP;
+    private InetAddress remoteIP; //Remote IP Address
     
-    private GameInfo game;
+    private GameInfo game; //GameInfo that the GameNetwork communicates with
     
-    private int type;
-    private int tcp, udp;
-    private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY;
+    private int type; //Game type, 0 for host, 1 for client
+    private int tcp, udp; //TCP and UDP ports
+    private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY; //Tank and mouse coordinates, WILL CHANGE LATER NOT MODULAR
 
     /**
-     * Constructor for objects of class GameNetwork
+     * Constructor for the game network
+     * @param t Game type, 0 is host, 1 is client
+     * @param g GameInfo that this links to
+     * @param tcpport Port for TCP communication
+     * @param udpport Port for UDP communication
      */
     public GameNetwork(int t, GameInfo g, int tcpport, int udpport)
     {
@@ -45,6 +48,16 @@ public class GameNetwork
         udp = udpport;
         System.out.println("Created type "+type+" Network with ports "+tcpport+" and "+udpport);
     }
+
+    /**
+     * Constructor for the game network
+     * @param t Game type, 0 is host, 1 is client
+     * @param g GameInfo that this links to
+     * @param tcpport Port for TCP communication
+     * @param udpport Port for UDP communication
+     * @param ip String representation of IP
+     * @throws UnknownHostException
+     */
     public GameNetwork(int t, GameInfo g, int tcpport, int udpport, String ip) throws UnknownHostException {
         game = g;
         type=t;
@@ -54,41 +67,36 @@ public class GameNetwork
         remoteIP = InetAddress.getByName(ip);
         System.out.println("Created type "+type+" Network with ports"+tcpport+" and "+udpport+" and IP "+ip);
     }
-    
-    
-    public GameNetwork(int t, GameInfo g, int tr)
-    {
-        game = g;
-        type=t;
-        tickrate = tr;
-    }
-    
-    
+
+    /**
+     * Starts the game network server
+     * @throws InterruptedException
+     * @throws IOException
+     */
     public void server() throws InterruptedException, IOException {
-        synchronized(this)
+        synchronized(this) //Synchronizes to make sure that the Host client-side receives IP
         {
             System.out.println("Server synchronized stage started.");
             if(type==0)
             {
                 System.out.println("Host TCP sequence started.");
-                socket = new ServerSocket(tcp);
-                System.out.println("test");
-                clientSocket = socket.accept();
+                socket = new ServerSocket(tcp); //Creates TCP server socket with port defined in constructor
+                clientSocket = socket.accept(); //Creates client socket from server socket
                 System.out.println("Host TCP network started.");
 
-                out = new PrintWriter(clientSocket.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                out = new PrintWriter(clientSocket.getOutputStream(), true); //creates TCP output
+                in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream())); //creates TCP input
 
                 System.out.println("Host waiting for IP...");
-                remoteIP = InetAddress.getByName(in.readLine());
+                remoteIP = InetAddress.getByName(in.readLine()); //Receives IP
                 System.out.println("Host received IP. Host waiting for remote player name...");
-                game.setRName(in.readLine());
+                game.setRName(in.readLine()); //Receives remote name
                 System.out.println("Host received remote player name. Host sent local player name.");
-                out.println(game.getName());
+                out.println(game.getName()); //Sends local name
                 
                 System.out.println(game.getRName()+" connected to local host with IP "+remoteIP+".");
-                game.setClientFound(true);
-                notify();
+                game.setClientFound(true); //used for gameframe
+                notify(); //Notifys client thread that IP has been found
             }
         }
         
@@ -128,7 +136,7 @@ public class GameNetwork
     
     public void client() throws IOException,InterruptedException
     {
-        synchronized(this)
+        synchronized(this) //Synchronized to make sure that host receives IP
         {
             if(type==1)
             {
@@ -150,7 +158,7 @@ public class GameNetwork
             else if(type==0)
             {
                 System.out.println("Client thread waiting to receive IP");
-                wait();
+                wait(); //waits for server thread to receive IP
                 game.setClientFound(true);
                 System.out.println("Client thread received IP.");
             }

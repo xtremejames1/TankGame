@@ -6,99 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="got bug to be fixed">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/TankGame_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientMenu.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ClientThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Game.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameInfo.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GameNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/GamePanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HostMenuPanel.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/HostMenuPanel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainMenu.form" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ServerThread.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tank.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/TankGame.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gameInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iptest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/iptest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jar/client.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jar/server.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/jar/tester.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/TankGame_jar/TankGame.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/artifacts/TankGame_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/libraries/jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ClientThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/Game.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameFrame$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameFrame.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GameNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GamePanel$moveAction.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/GamePanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/HostMenuPanel$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/HostMenuPanel.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/MainMenu.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/ServerThread.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/Tank.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/TankGame.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/AbstractLayout.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/DimensionInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/GridConstraints.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/GridLayoutManager.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/HorizontalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/LayoutState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/Spacer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/SupportCode$TextWithMnemonic.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/SupportCode.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/Util.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/com/intellij/uiDesigner/core/VerticalInfo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/iptest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/client.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/server.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/jar/tester.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/bluetankbase.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/bluetankturret.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/redtankbase.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/redtankturret.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TankGame/resources/tankgame.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bluetankbase.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/bluetankturret.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/redtankbase.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/redtankturret.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/tankgame.txt" beforeDir="false" />
-    </list>
+    <list default="true" id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="organized" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -130,23 +38,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH&quot;: &quot;228&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;18&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "228",
+    "jdk.selected.JAVA_MODULE": "18",
+    "last_opened_file_path": "C:/Users/xtrem/IdeaProjects/TankGame/src",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Application.Game">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game" />
-      <module name="TankGame" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -264,7 +173,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652297337757</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="organized">
+      <created>1652298043765</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1652298043765</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -288,7 +204,8 @@
     <MESSAGE value="forgot to add line of code im so dumb i think it works now" />
     <MESSAGE value="i added turrets to tanks" />
     <MESSAGE value="got bug to be fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="got bug to be fixed" />
+    <MESSAGE value="organized" />
+    <option name="LAST_COMMIT_MESSAGE" value="organized" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
