@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.UnknownHostException;
 
 public class ClientMenu {
@@ -21,6 +22,11 @@ public class ClientMenu {
         back.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    n.reset(); //closes all current connections
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 gf.mainMenu();
             }
         });

@@ -37,11 +37,6 @@ public class GameFrame{
      * Sets JFrame to MainMenu panel
      */
     public void mainMenu() {
-        try {
-            net.reset(); //closes all current connections
-        } catch (IOException e) {
-            System.out.println(e);
-        }
         MainMenu m = new MainMenu(frame, game, this); //creates MainMenu object
     }
 
@@ -50,7 +45,7 @@ public class GameFrame{
      */
     public void host() {
         net = new GameNetwork(0, game, 1235, 1234); //creates GameNetwork
-        HostMenuPanel h = new HostMenuPanel(frame,this, net.getIP(), net.getTCP(), net.getUDP()); //creates host panel
+        HostMenuPanel h = new HostMenuPanel(frame,this, net.getIP(), net.getTCP(), net.getUDP(), net); //creates host panel
 
         ClientThread client = new ClientThread(net); //creates client thread
         ServerThread server = new ServerThread(net); //creates server thread

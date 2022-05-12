@@ -223,9 +223,13 @@ public class GameNetwork
         return udp;
     }
     public void reset() throws IOException {
-        socket.close();
-        clientSocket.close();
-        clientUDP.close();
-        serverUDP.close();
+        if(socket != null)
+            socket.close();
+        if(clientSocket != null)
+            clientSocket.close();
+        if(clientUDP != null)
+            clientUDP.close();
+        if(serverUDP != null)
+            serverUDP.close();
     }
 }

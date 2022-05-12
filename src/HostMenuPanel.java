@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class HostMenuPanel {
     private JPanel panel;
@@ -10,7 +11,7 @@ public class HostMenuPanel {
     private JLabel tcpLabel;
     private JLabel udpLabel;
 
-    public HostMenuPanel(JFrame f, GameFrame gf, String ip, int tcp, int udp) {
+    public HostMenuPanel(JFrame f, GameFrame gf, String ip, int tcp, int udp, GameNetwork n) {
         f.setContentPane(panel);
         ipLabel.setText("IP: "+ip);
         tcpLabel.setText("TCP: "+tcp);
@@ -19,6 +20,11 @@ public class HostMenuPanel {
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    n.reset(); //closes all current connections
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 gf.mainMenu();
             }
         });
