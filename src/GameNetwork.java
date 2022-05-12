@@ -16,7 +16,6 @@ import java.awt.Point;
 public class GameNetwork
 {
     //TODO more modularity methods:
-    // - Reset
     // - Get and Set UDP messages
     private DatagramSocket clientUDP, serverUDP; //UDP client and server socket
     
@@ -113,7 +112,10 @@ public class GameNetwork
             serverUDP.receive(DpReceive);
 
             String tankData = data(receive).toString();
-            
+
+            game.setReceiveData(tankData);
+
+            /*
             String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
             String tankYString = tankData.substring(tankData.indexOf("tY")+2);
 
@@ -128,7 +130,7 @@ public class GameNetwork
 
             game.getRemoteTank().setLocation(rTankX, rTankY);
             game.getRemoteTank().setMouseLocation(rMouseX, rMouseY);
-
+            */
 
             
             receive = new byte[65535];
@@ -173,15 +175,17 @@ public class GameNetwork
         byte buf[] = null;
         while (true)
         {
+            /*
             PointerInfo a = MouseInfo.getPointerInfo();
             Point b = a.getLocation();
             mouseX = (int) b.getX();
             mouseY = (int) b.getY();
             tankX = game.getLocalTank().getX();
             tankY = game.getLocalTank().getY();
-            String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
+            */
+            //String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
             // convert the String input into the byte array.
-            buf = inp.getBytes();
+            buf = game.getSendData().getBytes();
             
             DatagramPacket DpSend =
                 new DatagramPacket(buf, buf.length, remoteIP, udp);
@@ -217,5 +221,11 @@ public class GameNetwork
     }
     public int getUDP() {
         return udp;
+    }
+    public void reset() throws IOException {
+        socket.close();
+        clientSocket.close();
+        clientUDP.close();
+        serverUDP.close();
     }
 }

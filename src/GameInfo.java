@@ -8,7 +8,7 @@ public class GameInfo
 {
     private final Tank localTank, remoteTank;
     private boolean clientFound;
-    private String name, rName;
+    private String name, rName, sendData, receiveData;
     private int type;
     
     /**
@@ -37,5 +37,17 @@ public class GameInfo
     }
     public boolean getClientFound() {
         return clientFound;
+    }
+    public String getSendData() {
+        return sendData;
+    }
+    public void setSendData(String data) {
+        sendData = data;
+    }
+    public String getReceiveData() {
+        return receiveData;
+    }
+    public void setReceiveData(String data) {
+        receiveData = data;
     }
 }

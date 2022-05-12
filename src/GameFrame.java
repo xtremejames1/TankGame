@@ -3,12 +3,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 import java.net.UnknownHostException;
 import javax.swing.*;
 
 
 public class GameFrame{
-    //TODO RESET NETWORK WITH BACK BUTTON
     private JFrame frame = new JFrame(); //creates the frame
     static final int FRAME_HEIGHT = 720; //should be changed in settings later
     static final int FRAME_WIDTH = 1280; //should be changed in settings later
@@ -37,6 +37,11 @@ public class GameFrame{
      * Sets JFrame to MainMenu panel
      */
     public void mainMenu() {
+        try {
+            net.reset(); //closes all current connections
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         MainMenu m = new MainMenu(frame, game, this); //creates MainMenu object
     }
 

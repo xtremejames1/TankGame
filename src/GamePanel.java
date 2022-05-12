@@ -137,6 +137,26 @@ public class GamePanel extends JPanel implements ActionListener
             localTank.setLocation(localTank.getX() + 5, localTank.getY());
         }
 
+        String tankData = game.getReceiveData();
+        String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
+        String tankYString = tankData.substring(tankData.indexOf("tY")+2);
+
+        String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY"));
+        String mouseYString = tankData.substring(tankData.indexOf("mY")+2, tankData.indexOf("tX"));
+
+
+        remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString));
+        remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString));
+
+        PointerInfo a = MouseInfo.getPointerInfo();
+        Point b = a.getLocation();
+        int mouseX = (int) b.getX();
+        int mouseY = (int) b.getY();
+        int tankX = localTank.getX();
+        int tankY = localTank.getY();
+
+        game.setSendData("mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY);
+
         this.setBackground(Color.white);
         repaint();
     }
