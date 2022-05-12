@@ -19,6 +19,9 @@ public class Tank{
         return height;
     }
 
+    public void rotate() {
+
+    }
     public int getX() {
         return x;
     }

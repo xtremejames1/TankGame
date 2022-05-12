@@ -158,7 +158,7 @@ public class GameNetwork
                 
                 System.out.println("Local client connected to "+game.getRName()+" with IP "+remoteIP+".");
             }
-            else if(type==0)
+            else if(type == 0)
             {
                 System.out.println("Client thread waiting to receive IP");
                 wait(); //waits for server thread to receive IP

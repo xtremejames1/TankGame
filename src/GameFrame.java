@@ -30,7 +30,8 @@ public class GameFrame{
         frame.setResizable(true);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
-        mainMenu();
+        //mainMenu();
+        game();
     }
 
     /**
@@ -86,7 +87,7 @@ public class GameFrame{
         game(); //Starts game
     }
     public void game() {
-        panel = new GamePanel(game, net); //Creates GamePanel object
+        panel = new GamePanel(game); //Creates GamePanel object
         panel.setVisible(true);
         frame.setContentPane(panel);
     }

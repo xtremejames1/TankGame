@@ -38,6 +38,51 @@ public class GamePanel extends JPanel implements ActionListener
     private BufferedImage blueTankBase, redTankBase, blueTankTurret, redTankTurret;
     private moveAction leftpress, rightpress, uppress, downpress, leftrelease, rightrelease, uprelease, downrelease;
 
+    public GamePanel(GameInfo g) {
+        game = g;
+        localTank = g.getLocalTank();
+        remoteTank = g.getRemoteTank();
+
+        try {
+            blueTankBase = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/bluetankbase.png")));
+            redTankBase = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/redtankbase.png")));
+            blueTankTurret = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/bluetankturret.png")));
+            redTankTurret = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/redtankturret.png")));
+        } catch (IOException e) {
+            System.out.println(e);
+            throw new RuntimeException(e);
+        }
+
+        leftpress = new moveAction(LEFT, 1);
+        rightpress = new moveAction(RIGHT, 1);
+        uppress = new moveAction(UP, 1);
+        downpress = new moveAction(DOWN, 1);
+
+        leftrelease = new moveAction(LEFT, 0);
+        rightrelease = new moveAction(RIGHT, 0);
+        uprelease = new moveAction(UP, 0);
+        downrelease = new moveAction(DOWN, 0);
+
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed A"), LEFTP);
+        this.getActionMap().put(LEFTP, leftpress);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed D"), RIGHTP);
+        this.getActionMap().put(RIGHTP, rightpress);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed W"), UPP);
+        this.getActionMap().put(UPP, uppress);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed S"), DOWNP);
+        this.getActionMap().put(DOWNP, downpress);
+
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("released A"), LEFTR);
+        this.getActionMap().put(LEFTR, leftrelease);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("released D"), RIGHTR);
+        this.getActionMap().put(RIGHTR, rightrelease);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("released W"), UPR);
+        this.getActionMap().put(UPR, uprelease);
+        this.getInputMap(focus).put(KeyStroke.getKeyStroke("released S"), DOWNR);
+        this.getActionMap().put(DOWNR, downrelease);
+
+        startGame();
+    }
     public GamePanel(GameInfo g, GameNetwork n){
         localTank = g.getLocalTank();
         remoteTank = g.getRemoteTank();
@@ -124,13 +169,13 @@ public class GamePanel extends JPanel implements ActionListener
     }
 
     public void update() {
-        if(moveUp) {
+        if(moveUp && localTank.getY() >= 0) {
             localTank.setLocation(localTank.getX(), localTank.getY() - 5);
         }
-        if(moveDown) {
+        if(moveDown && localTank.getY() + localTank.getHeight() <= FRAME_HEIGHT) {
             localTank.setLocation(localTank.getX(), localTank.getY() + 5);
         }
-        if(moveLeft && localTank.getX() > 0) {
+        if(moveLeft && localTank.getX() >= 0) {
             localTank.setLocation(localTank.getX() - 5, localTank.getY());
         }
         if(moveRight && localTank.getX() + localTank.getWidth() <= FRAME_WIDTH) {
@@ -139,6 +184,10 @@ public class GamePanel extends JPanel implements ActionListener
 
         this.setBackground(Color.white);
         repaint();
+
+        PointerInfo a = MouseInfo.getPointerInfo();
+        Point b = a.getLocation();
+        localTank.setMouseLocation((int) b.getX(), (int) b.getY());
     }
     @Override
     public void paint(Graphics g)
