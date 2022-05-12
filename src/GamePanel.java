@@ -137,16 +137,15 @@ public class GamePanel extends JPanel implements ActionListener
             localTank.setLocation(localTank.getX() + 5, localTank.getY());
         }
 
-        String tankData = game.getReceiveData();
-        String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
+        String tankData = game.getReceiveData(); //Gets data that is received.
+        String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY")); //Finds tank coords
         String tankYString = tankData.substring(tankData.indexOf("tY")+2);
 
-        String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY"));
+        String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY")); //Find mouse coords
         String mouseYString = tankData.substring(tankData.indexOf("mY")+2, tankData.indexOf("tX"));
 
-
-        remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString));
-        remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString));
+        remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString)); //set tank coords
+        remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString)); //set mouse coords
 
         PointerInfo a = MouseInfo.getPointerInfo();
         Point b = a.getLocation();
