@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
+@SuppressWarnings("ALL")
 public class GamePanel extends JPanel implements ActionListener
 {
     static final int FRAME_HEIGHT = 720;

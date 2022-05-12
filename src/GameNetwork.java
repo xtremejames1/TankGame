@@ -15,6 +15,9 @@ import java.awt.Point;
  */
 public class GameNetwork
 {
+    //TODO more modularity methods:
+    // - Reset
+    // - Get and Set UDP messages
     private DatagramSocket clientUDP, serverUDP; //UDP client and server socket
     
     private ServerSocket socket; //TCP server socket

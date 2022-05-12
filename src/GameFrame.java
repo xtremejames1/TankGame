@@ -8,7 +8,7 @@ import javax.swing.*;
 
 
 public class GameFrame{
-
+    //TODO RESET NETWORK WITH BACK BUTTON
     private JFrame frame = new JFrame(); //creates the frame
     static final int FRAME_HEIGHT = 720; //should be changed in settings later
     static final int FRAME_WIDTH = 1280; //should be changed in settings later
