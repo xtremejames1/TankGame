@@ -185,6 +185,12 @@ public class GameNetwork
             */
             //String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
             // convert the String input into the byte array.
+            while(game.getSendData()==null)
+            {
+                Thread.sleep(10);
+                System.out.println("Has not received data to send");
+            }
+
             buf = game.getSendData().getBytes();
             
             DatagramPacket DpSend =

@@ -123,7 +123,7 @@ public class GamePanel extends JPanel implements ActionListener
         }
     }
 
-    public void update() {
+    public void update() throws InterruptedException {
         if(moveUp) {
             localTank.setLocation(localTank.getX(), localTank.getY() - 5);
         }
@@ -137,16 +137,6 @@ public class GamePanel extends JPanel implements ActionListener
             localTank.setLocation(localTank.getX() + 5, localTank.getY());
         }
 
-        String tankData = game.getReceiveData(); //Gets data that is received.
-        String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY")); //Finds tank coords
-        String tankYString = tankData.substring(tankData.indexOf("tY")+2);
-
-        String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY")); //Find mouse coords
-        String mouseYString = tankData.substring(tankData.indexOf("mY")+2, tankData.indexOf("tX"));
-
-        remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString)); //set tank coords
-        remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString)); //set mouse coords
-
         PointerInfo a = MouseInfo.getPointerInfo();
         Point b = a.getLocation();
         int mouseX = (int) b.getX();
@@ -155,6 +145,23 @@ public class GamePanel extends JPanel implements ActionListener
         int tankY = localTank.getY();
 
         game.setSendData("mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY);
+
+        if(game.getReceiveData()!=null) {
+            String tankData = game.getReceiveData(); //Gets data that is received.
+            System.out.println(tankData);
+            String tankXString = tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY")); //Finds tank coords
+            String tankYString = tankData.substring(tankData.indexOf("tY") + 2);
+
+            String mouseXString = tankData.substring(tankData.indexOf("mX") + 2, tankData.indexOf("mY")); //Find mouse coords
+            String mouseYString = tankData.substring(tankData.indexOf("mY") + 2, tankData.indexOf("tX"));
+
+            remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString)); //set tank coords
+            remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString)); //set mouse coords
+        }
+        else {
+            Thread.sleep(100);
+            System.out.println("Not received data");
+        }
 
         this.setBackground(Color.white);
         repaint();
@@ -179,7 +186,11 @@ public class GamePanel extends JPanel implements ActionListener
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        update();
+        try {
+            update();
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
     }
     public void startGame()
     {
