@@ -10,9 +10,5 @@ public class Game
         GameInfo game = new GameInfo(bTank, rTank);
 
         GameFrame gameFrame = new GameFrame(game);
-
-        while (true) {
-            System.out.println("X: "+ bTank.getMouseX() +" | Y: "+ bTank.getMouseY());
-        }
     }
 }

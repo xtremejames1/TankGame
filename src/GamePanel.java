@@ -1,11 +1,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -15,9 +12,12 @@ public class GamePanel extends JPanel implements ActionListener
 {
     static final int FRAME_HEIGHT = 720;
     static final int FRAME_WIDTH = 1280;
+    static final int LOCALTANK_WIDTH = 134;
+    static final int LOCALTANK_HEIGHT = 204;
+    static final int REMOTETANK_WIDTH = 134;
+    static final int REMOTETANK_HEIGHT = 204;
     private int focus = JComponent.WHEN_IN_FOCUSED_WINDOW;
     //private boolean up, down, left, right;
-
     private final String RIGHT = "right";
     private final String LEFT = "left";
     private final String UP = "up";
@@ -31,13 +31,14 @@ public class GamePanel extends JPanel implements ActionListener
     private final String UPR = "upr";
     private final String DOWNR = "downr";
     private boolean moveUp, moveDown, moveRight, moveLeft;
+    private Point mouseLoc;
+    private int mouseX, mouseY;
     private GameInfo game;
     private GameNetwork net;
     private Timer timer;
     private Tank localTank, remoteTank;
     private BufferedImage blueTankBase, redTankBase, blueTankTurret, redTankTurret;
     private moveAction leftpress, rightpress, uppress, downpress, leftrelease, rightrelease, uprelease, downrelease;
-
     public GamePanel(GameInfo g) {
         game = g;
         localTank = g.getLocalTank();
@@ -83,6 +84,7 @@ public class GamePanel extends JPanel implements ActionListener
 
         startGame();
     }
+
     public GamePanel(GameInfo g, GameNetwork n){
         localTank = g.getLocalTank();
         remoteTank = g.getRemoteTank();
@@ -141,67 +143,79 @@ public class GamePanel extends JPanel implements ActionListener
         @Override
         public void actionPerformed(ActionEvent e) {
             if(direction.equals(RIGHT)&&state==1) {
-                moveRight=true;
+                moveRight = true;
             }
             if(direction.equals(LEFT)&&state==1) {
-                moveLeft=true;
+                moveLeft = true;
             }
-            if(direction.equals(UP)&&state==1) {
-                moveUp=true;
+            if(direction.equals(UP) && state == 1) {
+                moveUp = true;
             }
-            if(direction.equals(DOWN)&&state==1) {
-                moveDown=true;
+            if(direction.equals(DOWN) && state == 1) {
+                moveDown = true;
             }
 
-            if(direction.equals(RIGHT)&&state==0) {
-                moveRight=false;
+            if(direction.equals(RIGHT) && state == 0) {
+                moveRight = false;
             }
-            if(direction.equals(LEFT)&&state==0) {
-                moveLeft=false;
+            if(direction.equals(LEFT) && state == 0) {
+                moveLeft = false;
             }
-            if(direction.equals(UP)&&state==0) {
-                moveUp=false;
+            if(direction.equals(UP) && state == 0) {
+                moveUp = false;
             }
-            if(direction.equals(DOWN)&&state==0) {
-                moveDown=false;
+            if(direction.equals(DOWN) && state==0) {
+                moveDown = false;
             }
         }
     }
 
     public void update() {
-        if(moveUp && localTank.getY() >= 0) {
-            localTank.setLocation(localTank.getX(), localTank.getY() - 5);
-        }
-        if(moveDown && localTank.getY() + localTank.getHeight() <= FRAME_HEIGHT) {
-            localTank.setLocation(localTank.getX(), localTank.getY() + 5);
-        }
-        if(moveLeft && localTank.getX() >= 0) {
-            localTank.setLocation(localTank.getX() - 5, localTank.getY());
-        }
-        if(moveRight && localTank.getX() + localTank.getWidth() <= FRAME_WIDTH) {
-            localTank.setLocation(localTank.getX() + 5, localTank.getY());
-        }
+        mouseLoc = MouseInfo.getPointerInfo().getLocation();
+        mouseX = (int) mouseLoc.getX();
+        mouseY = (int) mouseLoc.getY();
+        //localTank.setMouseLocation((int) mouseLoc.getX(), (int) mouseLoc.getY());
 
+        if(moveUp && localTank.yPos() >= 0) {
+            localTank.setLocation(localTank.xPos(), localTank.yPos() - 5);
+        }
+        if(moveDown && localTank.yPos() + localTank.getHeight() <= FRAME_HEIGHT) {
+            localTank.setLocation(localTank.xPos(), localTank.yPos() + 5);
+        }
+        if(moveLeft && localTank.xPos() >= 0) {
+            localTank.setLocation(localTank.xPos() - 5, localTank.yPos());
+        }
+        if(moveRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
+            localTank.setLocation(localTank.xPos() + 5, localTank.yPos());
+        }
         this.setBackground(Color.white);
         repaint();
-
-        PointerInfo a = MouseInfo.getPointerInfo();
-        Point b = a.getLocation();
-        localTank.setMouseLocation((int) b.getX(), (int) b.getY());
     }
     @Override
-    public void paint(Graphics g)
-    {
+    public void paint(Graphics g) {
         this.setBackground(Color.white);
-        Graphics2D g2D = (Graphics2D)g;
+        Graphics2D g2D = (Graphics2D) g;
         g2D.setBackground(Color.white);
         g2D.setColor(Color.white);
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-        g2D.drawImage(blueTankBase, localTank.getX(), localTank.getY(), 134, 204, null);
-        g2D.drawImage(blueTankTurret, localTank.getX()+33, localTank.getY()-10, 68, 176, null);
 
-        g2D.drawImage(redTankBase, remoteTank.getX(), remoteTank.getY(), 134, 204, null);
-        g2D.drawImage(redTankTurret, remoteTank.getX()+33, remoteTank.getY()-10, 68, 176, null);
+        paintLocalTank(g2D);
+
+        if(mouseX <= localTank.xPos()) {
+            g2D.rotate(Math.toRadians(-10));
+        }
+        if(mouseX >= localTank.xPos()) {
+            g2D.rotate(Math.toRadians(10));
+        }
+    }
+    public void paintLocalTank(Graphics2D g2D) {
+        g2D.drawImage(blueTankBase, localTank.xPos(), localTank.yPos(), LOCALTANK_WIDTH, LOCALTANK_HEIGHT, null);
+        g2D.drawImage(blueTankTurret, localTank.xPos()+33, localTank.yPos() - 10, 68, 176, null);
+    }
+
+    public void paintRemoteTank(Graphics2D g2D) {
+        g2D.drawImage(redTankBase, remoteTank.xPos(), remoteTank.yPos(), REMOTETANK_WIDTH, REMOTETANK_HEIGHT, null);
+        g2D.drawImage(redTankTurret, remoteTank.xPos()+33, remoteTank.yPos() - 10, 68, 176, null);
     }
 
     /**

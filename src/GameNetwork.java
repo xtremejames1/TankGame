@@ -177,8 +177,8 @@ public class GameNetwork
             Point b = a.getLocation();
             mouseX = (int) b.getX();
             mouseY = (int) b.getY();
-            tankX = game.getLocalTank().getX();
-            tankY = game.getLocalTank().getY();
+            tankX = game.getLocalTank().xPos();
+            tankY = game.getLocalTank().yPos();
             String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
             // convert the String input into the byte array.
             buf = inp.getBytes();
