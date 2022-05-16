@@ -189,7 +189,7 @@ public class GamePanel extends JPanel implements ActionListener
         try {
             update();
         } catch (InterruptedException ex) {
-            throw new RuntimeException(ex);
+            System.out.println(ex);
         }
     }
     public void startGame()
