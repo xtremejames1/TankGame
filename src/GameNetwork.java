@@ -23,7 +23,7 @@ public class GameNetwork
     private Socket clientSocket; //TCP client socket
     private BufferedReader in; //TCP in reader
     private PrintWriter out; //TCP out writer
-    
+    private DatagramPacket DpSend;
     private int tickrate; //Tickrate of the network
     
     private InetAddress remoteIP; //Remote IP Address
@@ -31,6 +31,7 @@ public class GameNetwork
     private GameInfo game; //GameInfo that the GameNetwork communicates with
     
     private int type; //Game type, 0 for host, 1 for client
+    private String tankData; //data for tank
     private int tcp, udp; //TCP and UDP ports
     private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY; //Tank and mouse coordinates, WILL CHANGE LATER NOT MODULAR
 
@@ -111,7 +112,7 @@ public class GameNetwork
 
             serverUDP.receive(DpReceive);
 
-            String tankData = data(receive).toString();
+            tankData = data(receive).toString();
 
             game.setReceiveData(tankData);
 
@@ -193,7 +194,7 @@ public class GameNetwork
 
             buf = game.getSendData().getBytes();
             
-            DatagramPacket DpSend =
+            DpSend =
                 new DatagramPacket(buf, buf.length, remoteIP, udp);
             
             clientUDP.send(DpSend);
