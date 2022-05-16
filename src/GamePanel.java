@@ -183,7 +183,7 @@ public class GamePanel extends JPanel implements ActionListener
         bottomMid = new Point((int) localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + LOCALTANK_PNG_HEIGHT);
 
         localTank.setSlope((bottomMid.getY() - topMid.getY()) / (bottomMid.getX() - topMid.getX()));
-        transform = new AffineTransform();
+        //transform = new AffineTransform();
         //System.out.println(localTank.getHeight());
         //System.out.println("TOP X: "+topMid.getX());
         //System.out.println("TOP Y: "+topMid.getY());
@@ -225,24 +225,28 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.setBackground(Color.white);
         g2D.setColor(Color.white);
 
-
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        paintLocalBase(g2D);
         //g2D.setTransform(transform);
 
         if(mouseX <= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            g2D.rotate(Math.toRadians(localTank.getDegree() - 5), localTank.xPos() + 80, localTank.yPos() + 125);
+            //g2D.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + (((int) LOCALTANK_PNG_HEIGHT) / 2) - 25);
             //transform.rotate(Math.toRadians(-10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
-            localTank.addDegree(-10);
+            localTank.addDegree(-7);
         }
         if(mouseX >= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() + 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            g2D.rotate(Math.toRadians(localTank.getDegree() + 5), localTank.xPos() + 75, localTank.yPos() + 125);
             //transform.rotate(Math.toRadians(10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
-            localTank.addDegree(10);
+            localTank.addDegree(7);
         }
-        paintLocalTank(g2D);
+        paintLocalTurret(g2D);
     }
-    public void paintLocalTank(Graphics2D g2D) {
+    public void paintLocalBase(Graphics2D g2D) {
         g2D.drawImage(blueTankBase, localTank.xPos(), localTank.yPos(), LOCALTANK_PNG_WIDTH, LOCALTANK_PNG_HEIGHT, null);
+    }
+
+    public void paintLocalTurret(Graphics2D g2D) {
         g2D.drawImage(blueTankTurret, localTank.xPos()+33, localTank.yPos() - 10, 68, 176, null);
     }
 

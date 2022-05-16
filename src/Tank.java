@@ -29,14 +29,9 @@ public class Tank {
     public double getSlope() {
         return slope;
     }
-    /*
-    public int getMouseX() {
-        return mouseX;
+    public void setDegree(int degree) {
+        this.degree = degree;
     }
-    public int getMouseY() {
-        return mouseY;
-    }
-    */
     public void addDegree(int degree) {
         this.degree += degree;
     }
