@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -12,10 +13,10 @@ public class GamePanel extends JPanel implements ActionListener
 {
     static final int FRAME_HEIGHT = 720;
     static final int FRAME_WIDTH = 1280;
-    static final int LOCALTANK_WIDTH = 134;
-    static final int LOCALTANK_HEIGHT = 204;
-    static final int REMOTETANK_WIDTH = 134;
-    static final int REMOTETANK_HEIGHT = 204;
+    static final int LOCALTANK_PNG_WIDTH = 134;
+    static final int LOCALTANK_PNG_HEIGHT = 204;
+    static final int REMOTETANK_PNG_WIDTH = 134;
+    static final int REMOTETANK_PNG_HEIGHT = 204;
     private int focus = JComponent.WHEN_IN_FOCUSED_WINDOW;
     //private boolean up, down, left, right;
     private final String RIGHT = "right";
@@ -32,7 +33,9 @@ public class GamePanel extends JPanel implements ActionListener
     private final String DOWNR = "downr";
     private boolean moveUp, moveDown, moveRight, moveLeft;
     private Point mouseLoc;
+    private Point topMid, bottomMid;
     private int mouseX, mouseY;
+    private AffineTransform transform;
     private GameInfo game;
     private GameNetwork net;
     private Timer timer;
@@ -90,6 +93,7 @@ public class GamePanel extends JPanel implements ActionListener
         remoteTank = g.getRemoteTank();
         net = n;
         game = g;
+
         try {
             blueTankBase = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/bluetankbase.png")));
             redTankBase = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/redtankbase.png")));
@@ -174,6 +178,19 @@ public class GamePanel extends JPanel implements ActionListener
         mouseLoc = MouseInfo.getPointerInfo().getLocation();
         mouseX = (int) mouseLoc.getX();
         mouseY = (int) mouseLoc.getY();
+
+        topMid = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2), localTank.yPos());
+        bottomMid = new Point((int) localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + LOCALTANK_PNG_HEIGHT);
+
+        localTank.setSlope((bottomMid.getY() - topMid.getY()) / (bottomMid.getX() - topMid.getX()));
+        transform = new AffineTransform();
+        //System.out.println(localTank.getHeight());
+        //System.out.println("TOP X: "+topMid.getX());
+        //System.out.println("TOP Y: "+topMid.getY());
+        //System.out.println("BOTTOM X: "+bottomMid.getX());
+        //System.out.println("BOTTOM Y: "+bottomMid.getY());
+        //System.out.println("bottomMid "+ bottomMid);
+        //System.out.println(localTank.getSlope());
         //localTank.setMouseLocation((int) mouseLoc.getX(), (int) mouseLoc.getY());
 
         if(moveUp && localTank.yPos() >= 0) {
@@ -188,6 +205,16 @@ public class GamePanel extends JPanel implements ActionListener
         if(moveRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
             localTank.setLocation(localTank.xPos() + 5, localTank.yPos());
         }
+        /*
+        if(mouseX <= localTank.xPos()) {
+            transform.rotate(Math.toRadians(localTank.getDegree() + 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            localTank.addDegree(10);
+        }
+        if(mouseX >= localTank.xPos()) {
+            transform.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            localTank.addDegree(-10);
+        }
+        */
         this.setBackground(Color.white);
         repaint();
     }
@@ -197,27 +224,38 @@ public class GamePanel extends JPanel implements ActionListener
         Graphics2D g2D = (Graphics2D) g;
         g2D.setBackground(Color.white);
         g2D.setColor(Color.white);
-        g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 
-        paintLocalTank(g2D);
+
+        g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        //g2D.setTransform(transform);
 
         if(mouseX <= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(-10));
+            g2D.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            //transform.rotate(Math.toRadians(-10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            localTank.addDegree(-10);
         }
         if(mouseX >= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(10));
+            g2D.rotate(Math.toRadians(localTank.getDegree() + 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            //transform.rotate(Math.toRadians(10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+            localTank.addDegree(10);
         }
+        paintLocalTank(g2D);
     }
     public void paintLocalTank(Graphics2D g2D) {
-        g2D.drawImage(blueTankBase, localTank.xPos(), localTank.yPos(), LOCALTANK_WIDTH, LOCALTANK_HEIGHT, null);
+        g2D.drawImage(blueTankBase, localTank.xPos(), localTank.yPos(), LOCALTANK_PNG_WIDTH, LOCALTANK_PNG_HEIGHT, null);
         g2D.drawImage(blueTankTurret, localTank.xPos()+33, localTank.yPos() - 10, 68, 176, null);
     }
 
     public void paintRemoteTank(Graphics2D g2D) {
-        g2D.drawImage(redTankBase, remoteTank.xPos(), remoteTank.yPos(), REMOTETANK_WIDTH, REMOTETANK_HEIGHT, null);
+        g2D.drawImage(redTankBase, remoteTank.xPos(), remoteTank.yPos(), REMOTETANK_PNG_WIDTH, REMOTETANK_PNG_HEIGHT, null);
         g2D.drawImage(redTankTurret, remoteTank.xPos()+33, remoteTank.yPos() - 10, 68, 176, null);
     }
 
+    /*
+    public AffineTransform rotate() {
+        return null;
+    }
+    */
     /**
      * @param e the event to be processed
      */

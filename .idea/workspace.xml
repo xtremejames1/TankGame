@@ -1,39 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="TankGame:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="organized" />
+    <list default="true" id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tank.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="main" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
-  </component>
-  <component name="ProjectId" id="28MPTkPuHggduXL41WaWxLtSqHv" />
+  <component name="ProjectId" id="29E9a2wujvJI3UteeH1zAS23G9I" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,184 +25,33 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "UI_DESIGNER_EDITOR_MODE.PaletteManager.WIDTH": "228",
-    "jdk.selected.JAVA_MODULE": "18",
-    "last_opened_file_path": "C:/Users/241RetelewskiA/IdeaProjects/TankGame/src",
-    "project.structure.last.edited": "Artifacts",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0"
+    "RunOnceActivity.ShowReadmeOnStart": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.Game">
+  <component name="RunManager">
     <configuration name="Game" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Game" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="HostMenuPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="HostMenuPanel" />
       <module name="TankGame" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration name="MainMenuPanel" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MainMenuPanel" />
-      <module name="TankGame" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TankGame.jar" type="JarApplication" temporary="true">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/TankGame_jar/TankGame.jar" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Game" />
-        <item itemvalue="JAR Application.TankGame.jar" />
-        <item itemvalue="Application.HostMenuPanel" />
-        <item itemvalue="Application.MainMenuPanel" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="47334e2b-c913-4793-adf8-bcb84cff3b31" name="Changes" comment="" />
-      <created>1651023496446</created>
+      <changelist id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="" />
+      <created>1652667439141</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1651023496446</updated>
+      <updated>1652667439141</updated>
     </task>
-    <task id="LOCAL-00001" summary="deleted bluej files">
-      <created>1651023717058</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1651023717058</updated>
-    </task>
-    <task id="LOCAL-00002" summary="optimized a bit">
-      <created>1651024164556</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1651024164556</updated>
-    </task>
-    <task id="LOCAL-00003" summary="i was abt to change a crap ton but none of it worked">
-      <created>1651117058823</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1651117058823</updated>
-    </task>
-    <task id="LOCAL-00004" summary="got 2 tank images in and keybinds working">
-      <created>1651155633821</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1651155633821</updated>
-    </task>
-    <task id="LOCAL-00005" summary="got 2 tank images in and keybinds working">
-      <created>1651155650879</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1651155650879</updated>
-    </task>
-    <task id="LOCAL-00006" summary="multiplayer does not work with ui">
-      <created>1651173360662</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1651173360662</updated>
-    </task>
-    <task id="LOCAL-00007" summary="trying to test">
-      <created>1651173652753</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1651173652753</updated>
-    </task>
-    <task id="LOCAL-00008" summary="forgot to add line of code im so dumb i think it works now">
-      <created>1651178644424</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1651178644424</updated>
-    </task>
-    <task id="LOCAL-00009" summary="i added turrets to tanks">
-      <created>1651180487464</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1651180487464</updated>
-    </task>
-    <task id="LOCAL-00010" summary="i added turrets to tanks">
-      <created>1652209203910</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1652209203910</updated>
-    </task>
-    <task id="LOCAL-00011" summary="got bug to be fixed">
-      <created>1652297337757</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1652297337757</updated>
-    </task>
-    <task id="LOCAL-00012" summary="organized">
-      <created>1652298043765</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1652298043765</updated>
-    </task>
-    <option name="localTasksCounter" value="13" />
     <servers />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="deleted bluej files" />
-    <MESSAGE value="optimized a bit" />
-    <MESSAGE value="i was abt to change a crap ton but none of it worked" />
-    <MESSAGE value="got 2 tank images in and keybinds working" />
-    <MESSAGE value="multiplayer does not work with ui" />
-    <MESSAGE value="trying to test" />
-    <MESSAGE value="forgot to add line of code im so dumb i think it works now" />
-    <MESSAGE value="i added turrets to tanks" />
-    <MESSAGE value="got bug to be fixed" />
-    <MESSAGE value="organized" />
-    <option name="LAST_COMMIT_MESSAGE" value="organized" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <breakpoint enabled="true" type="java-exception">
-          <properties class="java.lang.RuntimeException" package="java.lang" />
-          <option name="timeStamp" value="5" />
-        </breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/TankGame$Game.ic" NAME="Game Coverage Results" MODIFIED="1651105518261" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
