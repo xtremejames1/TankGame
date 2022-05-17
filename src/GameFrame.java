@@ -60,7 +60,7 @@ public class GameFrame{
                     game();
             }
         };
-        Timer timer = new Timer(1000/60, l); //creates a timer that repeats 60 times every second
+        Timer timer = new Timer(100, l); //creates a timer that repeats 60 times every second
         timer.start(); //starts timer
     }
     public void client() {

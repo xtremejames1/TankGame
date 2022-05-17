@@ -194,7 +194,7 @@ public class GamePanel extends JPanel implements ActionListener
     }
     public void startGame()
     {
-        timer = new Timer(1000/60, this);
+        timer = new Timer(1000/30, this);
         timer.start();
     }
 }
