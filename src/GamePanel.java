@@ -33,10 +33,10 @@ public class GamePanel extends JPanel implements ActionListener
     private boolean moveUp, moveDown, moveRight, moveLeft;
     private Point mouseLoc;
     private Point topMid, bottomMid;
-    private Point centerTank;
+    private Point centerTank, centerTurret;
     private int mouseLocX, mouseLocY;
     private double mouseDistX, mouseDistY;
-    private double mouseAngle;
+    private double mouseDegree;
     private GameInfo game;
     private GameNetwork net;
     private Timer timer;
@@ -176,17 +176,18 @@ public class GamePanel extends JPanel implements ActionListener
     }
 
     public void update() {
-        centerTank = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2),localTank.yPos() + LOCALTANK_PNG_HEIGHT);
+        centerTurret = new Point(localTank.xPos() + 67, localTank.yPos() + 125);
         mouseLoc = MouseInfo.getPointerInfo().getLocation();
         SwingUtilities.convertPointFromScreen(mouseLoc, this);
         mouseLocX = (int) mouseLoc.getX();
         mouseLocY = (int) mouseLoc.getY();
 
-        mouseDistX = mouseLocX - centerTank.getX();
-        mouseDistY = mouseLocY - centerTank.getY();
-        //mouseAngle = Math.toDegrees(Math.atan(mouseDistY / mouseDistX));
-        mouseAngle = angleInRelation(mouseLoc, centerTank);
-        System.out.println(mouseAngle);
+        mouseDistX = mouseLocX - centerTurret.getX();
+        mouseDistY = mouseLocY - centerTurret.getY();
+
+        mouseDegree = angleInRelation(mouseLoc, centerTurret);
+        System.out.println(mouseDegree + " "+localTank.getDegree());
+
         //System.out.println("X: "+ mouseX + " Y: "+ mouseY);
 
         //topMid = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2), localTank.yPos());
@@ -226,17 +227,19 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         paintLocalBase(g2D);
 
-
+        localTank.setDegree((int) mouseDegree);
+        g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
         /*
-        if(mouseAngle <= localTank.getDegree()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() + 7), localTank.xPos() + 67, localTank.yPos() + 125);
-            localTank.addDegree(7);
+        if(mouseDegree < localTank.getDegree()) {
+            localTank.addDegree(-5);
+            g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
         }
-        if(mouseAngle >= localTank.getDegree()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() - 7), localTank.xPos() + 67, localTank.yPos() + 125);
-            localTank.addDegree(-7);
+        else if(mouseDegree > localTank.getDegree()) {
+            localTank.addDegree(5);
+            g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
         }
-         */
+        */
+
         paintLocalTurret(g2D);
     }
     public void paintLocalBase(Graphics2D g2D) {
@@ -268,47 +271,12 @@ public class GamePanel extends JPanel implements ActionListener
         update();
     }
         public double angleInRelation(Point mouseLoc, Point tankLoc) {
-            // Point 1 in relation to point 2
-            int xDelta = Math.abs(tankLoc.x - mouseLoc.x);
-            int yDelta = Math.abs(tankLoc.y - mouseLoc.y);
-            double deg = 361;
-            if ((tankLoc.x > mouseLoc.x) && (tankLoc.y < mouseLoc.y)) {
-                // Quadrant 1
-                deg = 90 + Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
-                System.out.println("QUADRANT 1");
+            double angle = Math.toDegrees(Math.atan2((mouseLoc.getY() - tankLoc.getY()), mouseLoc.getX() - tankLoc.getX()));
+            angle += 90;
+            if (angle < 0) {
+                angle += 360;
             }
-            else if ((tankLoc.x > mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
-                // Quadrant 2
-                deg = 180 + Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
-                System.out.println("QUADRANT 2");
-            }
-            else if ((tankLoc.x < mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
-                // Quadrant 3
-                deg = -Math.toDegrees(Math.atan(Math.toRadians(xDelta) / Math.toRadians(yDelta)));
-                System.out.println("QUADRANT 3");
-            }
-            else if ( (tankLoc.x < mouseLoc.x) && (tankLoc.y < mouseLoc.y)) {
-                // Quadrant 4
-                deg = Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
-                System.out.println("QUADRANT 4");
-            }
-
-            else if ((tankLoc.x == mouseLoc.x) && (tankLoc.y < mouseLoc.y)){
-                deg = -90;
-            }
-            else if ((tankLoc.x == mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
-                deg = 90;
-            }
-            else if ((tankLoc.y == mouseLoc.y) && (tankLoc.x > mouseLoc.x)) {
-                deg = 0;
-            }
-            else if ((tankLoc.y == tankLoc.y) && (tankLoc.x < mouseLoc.x)) {
-                deg = 180;
-            }
-            else if (deg == 361) {
-                deg = 0;
-            }
-            return deg;
+            return angle;
         }
     public void startGame()
     {
