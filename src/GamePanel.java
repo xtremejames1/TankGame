@@ -148,7 +148,6 @@ public class GamePanel extends JPanel implements ActionListener
 
         if(game.getReceiveData()!=null) {
             String tankData = game.getReceiveData(); //Gets data that is received.
-            System.out.println(tankData);
             String tankXString = tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY")); //Finds tank coords
             String tankYString = tankData.substring(tankData.indexOf("tY") + 2);
 

@@ -102,12 +102,15 @@ public class GameNetwork
                 notify(); //Notifys client thread that IP has been found
             }
         }
-        
+        System.out.println("before creation of stuff"+memoryUsed());
         serverUDP = new DatagramSocket(udp);
-        byte[] receive = new byte[65535];
+        byte[] receive = new byte[48];
         DatagramPacket DpReceive = null;
+        System.out.println("after creation of stuff"+memoryUsed());
+        long used1;
         while(true)
         {
+            used1 = memoryUsed();
             DpReceive = new DatagramPacket(receive, receive.length);
 
             serverUDP.receive(DpReceive);
@@ -115,26 +118,11 @@ public class GameNetwork
             tankData = data(receive).toString();
 
             game.setReceiveData(tankData);
-
-            /*
-            String tankXString = tankData.substring(tankData.indexOf("tX")+2,tankData.indexOf("tY"));
-            String tankYString = tankData.substring(tankData.indexOf("tY")+2);
-
-            String mouseXString = tankData.substring(tankData.indexOf("mX")+2,tankData.indexOf("mY"));
-            String mouseYString = tankData.substring(tankData.indexOf("mY")+2, tankData.indexOf("tX"));
-
-            rTankX = Integer.parseInt(tankXString);
-            rTankY = Integer.parseInt(tankYString);
-
-            rMouseX = Integer.parseInt(mouseXString);
-            rMouseY = Integer.parseInt(mouseYString);
-
-            game.getRemoteTank().setLocation(rTankX, rTankY);
-            game.getRemoteTank().setMouseLocation(rMouseX, rMouseY);
-            */
-
             
-            receive = new byte[65535];
+            receive = new byte[48];
+
+            System.out.println("marginal memory used per cycle: "+(memoryUsed()-used1));
+
             Thread.sleep(1000/tickrate);
         }
         
@@ -222,6 +210,9 @@ public class GameNetwork
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
+    }
+    private static long memoryUsed() {
+        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     }
     public int getTCP() {
         return tcp;
