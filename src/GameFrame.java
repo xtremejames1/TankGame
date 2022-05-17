@@ -40,7 +40,6 @@ public class GameFrame{
     public void mainMenu() {
         MainMenu m = new MainMenu(frame, game, this); //creates MainMenu object
     }
-
     /**
      * Sets JFrame to host menu panel
      */

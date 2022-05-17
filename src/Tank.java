@@ -10,6 +10,7 @@ public class Tank {
         this.width = width;
         this.height = height;
         this.color = color;
+        this.degree = 0;
     }
     public int getWidth() {
         return width;

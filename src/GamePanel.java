@@ -3,7 +3,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
@@ -34,8 +33,10 @@ public class GamePanel extends JPanel implements ActionListener
     private boolean moveUp, moveDown, moveRight, moveLeft;
     private Point mouseLoc;
     private Point topMid, bottomMid;
-    private int mouseX, mouseY;
-    private AffineTransform transform;
+    private Point centerTank;
+    private int mouseLocX, mouseLocY;
+    private double mouseDistX, mouseDistY;
+    private double mouseAngle;
     private GameInfo game;
     private GameNetwork net;
     private Timer timer;
@@ -175,14 +176,22 @@ public class GamePanel extends JPanel implements ActionListener
     }
 
     public void update() {
+        centerTank = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2),localTank.yPos() + LOCALTANK_PNG_HEIGHT);
         mouseLoc = MouseInfo.getPointerInfo().getLocation();
-        mouseX = (int) mouseLoc.getX();
-        mouseY = (int) mouseLoc.getY();
+        SwingUtilities.convertPointFromScreen(mouseLoc, this);
+        mouseLocX = (int) mouseLoc.getX();
+        mouseLocY = (int) mouseLoc.getY();
 
-        topMid = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2), localTank.yPos());
-        bottomMid = new Point((int) localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + LOCALTANK_PNG_HEIGHT);
+        mouseDistX = mouseLocX - centerTank.getX();
+        mouseDistY = mouseLocY - centerTank.getY();
+        //mouseAngle = Math.toDegrees(Math.atan(mouseDistY / mouseDistX));
+        mouseAngle = angleInRelation(mouseLoc, centerTank);
+        System.out.println(mouseAngle);
+        //System.out.println("X: "+ mouseX + " Y: "+ mouseY);
 
-        localTank.setSlope((bottomMid.getY() - topMid.getY()) / (bottomMid.getX() - topMid.getX()));
+        //topMid = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2), localTank.yPos());
+        //bottomMid = new Point((int) localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + LOCALTANK_PNG_HEIGHT);
+        //localTank.setSlope((bottomMid.getY() - topMid.getY()) / (bottomMid.getX() - topMid.getX()));
         //transform = new AffineTransform();
         //System.out.println(localTank.getHeight());
         //System.out.println("TOP X: "+topMid.getX());
@@ -190,8 +199,6 @@ public class GamePanel extends JPanel implements ActionListener
         //System.out.println("BOTTOM X: "+bottomMid.getX());
         //System.out.println("BOTTOM Y: "+bottomMid.getY());
         //System.out.println("bottomMid "+ bottomMid);
-        //System.out.println(localTank.getSlope());
-        //localTank.setMouseLocation((int) mouseLoc.getX(), (int) mouseLoc.getY());
 
         if(moveUp && localTank.yPos() >= 0) {
             localTank.setLocation(localTank.xPos(), localTank.yPos() - 5);
@@ -205,16 +212,7 @@ public class GamePanel extends JPanel implements ActionListener
         if(moveRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
             localTank.setLocation(localTank.xPos() + 5, localTank.yPos());
         }
-        /*
-        if(mouseX <= localTank.xPos()) {
-            transform.rotate(Math.toRadians(localTank.getDegree() + 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
-            localTank.addDegree(10);
-        }
-        if(mouseX >= localTank.xPos()) {
-            transform.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
-            localTank.addDegree(-10);
-        }
-        */
+
         this.setBackground(Color.white);
         repaint();
     }
@@ -227,19 +225,18 @@ public class GamePanel extends JPanel implements ActionListener
 
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
         paintLocalBase(g2D);
-        //g2D.setTransform(transform);
 
-        if(mouseX <= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() - 5), localTank.xPos() + 80, localTank.yPos() + 125);
-            //g2D.rotate(Math.toRadians(localTank.getDegree() - 10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + (((int) LOCALTANK_PNG_HEIGHT) / 2) - 25);
-            //transform.rotate(Math.toRadians(-10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
-            localTank.addDegree(-7);
-        }
-        if(mouseX >= localTank.xPos()) {
-            g2D.rotate(Math.toRadians(localTank.getDegree() + 5), localTank.xPos() + 75, localTank.yPos() + 125);
-            //transform.rotate(Math.toRadians(10), localTank.xPos() + ((int) LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + ((int) LOCALTANK_PNG_HEIGHT) / 2);
+
+        /*
+        if(mouseAngle <= localTank.getDegree()) {
+            g2D.rotate(Math.toRadians(localTank.getDegree() + 7), localTank.xPos() + 67, localTank.yPos() + 125);
             localTank.addDegree(7);
         }
+        if(mouseAngle >= localTank.getDegree()) {
+            g2D.rotate(Math.toRadians(localTank.getDegree() - 7), localTank.xPos() + 67, localTank.yPos() + 125);
+            localTank.addDegree(-7);
+        }
+         */
         paintLocalTurret(g2D);
     }
     public void paintLocalBase(Graphics2D g2D) {
@@ -250,8 +247,11 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.drawImage(blueTankTurret, localTank.xPos()+33, localTank.yPos() - 10, 68, 176, null);
     }
 
-    public void paintRemoteTank(Graphics2D g2D) {
+    public void paintRemoteBase(Graphics2D g2D) {
         g2D.drawImage(redTankBase, remoteTank.xPos(), remoteTank.yPos(), REMOTETANK_PNG_WIDTH, REMOTETANK_PNG_HEIGHT, null);
+    }
+
+    public void paintRemoteTurret(Graphics2D g2D) {
         g2D.drawImage(redTankTurret, remoteTank.xPos()+33, remoteTank.yPos() - 10, 68, 176, null);
     }
 
@@ -267,6 +267,49 @@ public class GamePanel extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e) {
         update();
     }
+        public double angleInRelation(Point mouseLoc, Point tankLoc) {
+            // Point 1 in relation to point 2
+            int xDelta = Math.abs(tankLoc.x - mouseLoc.x);
+            int yDelta = Math.abs(tankLoc.y - mouseLoc.y);
+            double deg = 361;
+            if ((tankLoc.x > mouseLoc.x) && (tankLoc.y < mouseLoc.y)) {
+                // Quadrant 1
+                deg = 90 + Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
+                System.out.println("QUADRANT 1");
+            }
+            else if ((tankLoc.x > mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
+                // Quadrant 2
+                deg = 180 + Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
+                System.out.println("QUADRANT 2");
+            }
+            else if ((tankLoc.x < mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
+                // Quadrant 3
+                deg = -Math.toDegrees(Math.atan(Math.toRadians(xDelta) / Math.toRadians(yDelta)));
+                System.out.println("QUADRANT 3");
+            }
+            else if ( (tankLoc.x < mouseLoc.x) && (tankLoc.y < mouseLoc.y)) {
+                // Quadrant 4
+                deg = Math.toDegrees(Math.atan(Math.toRadians(yDelta) / Math.toRadians(xDelta)));
+                System.out.println("QUADRANT 4");
+            }
+
+            else if ((tankLoc.x == mouseLoc.x) && (tankLoc.y < mouseLoc.y)){
+                deg = -90;
+            }
+            else if ((tankLoc.x == mouseLoc.x) && (tankLoc.y > mouseLoc.y)) {
+                deg = 90;
+            }
+            else if ((tankLoc.y == mouseLoc.y) && (tankLoc.x > mouseLoc.x)) {
+                deg = 0;
+            }
+            else if ((tankLoc.y == tankLoc.y) && (tankLoc.x < mouseLoc.x)) {
+                deg = 180;
+            }
+            else if (deg == 361) {
+                deg = 0;
+            }
+            return deg;
+        }
     public void startGame()
     {
         timer = new Timer(1000/60, this);
