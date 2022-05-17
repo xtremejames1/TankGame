@@ -188,19 +188,6 @@ public class GamePanel extends JPanel implements ActionListener
         mouseDegree = angleInRelation(mouseLoc, centerTurret);
         System.out.println(mouseDegree + " "+localTank.getDegree());
 
-        //System.out.println("X: "+ mouseX + " Y: "+ mouseY);
-
-        //topMid = new Point(localTank.xPos() + (int) (LOCALTANK_PNG_WIDTH / 2), localTank.yPos());
-        //bottomMid = new Point((int) localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + LOCALTANK_PNG_HEIGHT);
-        //localTank.setSlope((bottomMid.getY() - topMid.getY()) / (bottomMid.getX() - topMid.getX()));
-        //transform = new AffineTransform();
-        //System.out.println(localTank.getHeight());
-        //System.out.println("TOP X: "+topMid.getX());
-        //System.out.println("TOP Y: "+topMid.getY());
-        //System.out.println("BOTTOM X: "+bottomMid.getX());
-        //System.out.println("BOTTOM Y: "+bottomMid.getY());
-        //System.out.println("bottomMid "+ bottomMid);
-
         if(moveUp && localTank.yPos() >= 0) {
             localTank.setLocation(localTank.xPos(), localTank.yPos() - 5);
         }
@@ -229,17 +216,6 @@ public class GamePanel extends JPanel implements ActionListener
 
         localTank.setDegree((int) mouseDegree);
         g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
-        /*
-        if(mouseDegree < localTank.getDegree()) {
-            localTank.addDegree(-5);
-            g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
-        }
-        else if(mouseDegree > localTank.getDegree()) {
-            localTank.addDegree(5);
-            g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
-        }
-        */
-
         paintLocalTurret(g2D);
     }
     public void paintLocalBase(Graphics2D g2D) {
