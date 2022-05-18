@@ -30,10 +30,10 @@ public class GamePanel extends JPanel implements ActionListener
     private final String LEFTR = "leftr";
     private final String UPR = "upr";
     private final String DOWNR = "downr";
-    private boolean moveUp, moveDown, moveRight, moveLeft;
+    private boolean moveUp, moveDown, rotateRight, rotateLeft;
     private Point mouseLoc;
     private Point topMid, bottomMid;
-    private Point centerTank, centerTurret;
+    private Point centerBase, centerTurret;
     private int mouseLocX, mouseLocY;
     private double mouseDistX, mouseDistY;
     private double mouseDegree;
@@ -117,19 +117,25 @@ public class GamePanel extends JPanel implements ActionListener
 
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed A"), LEFTP);
         this.getActionMap().put(LEFTP, leftpress);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed D"), RIGHTP);
         this.getActionMap().put(RIGHTP, rightpress);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed W"), UPP);
         this.getActionMap().put(UPP, uppress);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("pressed S"), DOWNP);
         this.getActionMap().put(DOWNP, downpress);
 
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("released A"), LEFTR);
         this.getActionMap().put(LEFTR, leftrelease);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("released D"), RIGHTR);
         this.getActionMap().put(RIGHTR, rightrelease);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("released W"), UPR);
         this.getActionMap().put(UPR, uprelease);
+
         this.getInputMap(focus).put(KeyStroke.getKeyStroke("released S"), DOWNR);
         this.getActionMap().put(DOWNR, downrelease);
 
@@ -140,18 +146,18 @@ public class GamePanel extends JPanel implements ActionListener
 
         String direction;
         int state;
-        moveAction(String d, int s) {
-            direction = d;
-            state = s;
+        moveAction(String direction, int state) {
+            this.direction = direction;
+            this.state = state;
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(direction.equals(RIGHT)&&state==1) {
-                moveRight = true;
+            if(direction.equals(RIGHT) && state == 1) {
+                rotateRight = true;
             }
-            if(direction.equals(LEFT)&&state==1) {
-                moveLeft = true;
+            if(direction.equals(LEFT) && state == 1) {
+                rotateLeft = true;
             }
             if(direction.equals(UP) && state == 1) {
                 moveUp = true;
@@ -161,15 +167,15 @@ public class GamePanel extends JPanel implements ActionListener
             }
 
             if(direction.equals(RIGHT) && state == 0) {
-                moveRight = false;
+                rotateRight = false;
             }
             if(direction.equals(LEFT) && state == 0) {
-                moveLeft = false;
+                rotateLeft = false;
             }
             if(direction.equals(UP) && state == 0) {
                 moveUp = false;
             }
-            if(direction.equals(DOWN) && state==0) {
+            if(direction.equals(DOWN) && state == 0) {
                 moveDown = false;
             }
         }
@@ -177,6 +183,8 @@ public class GamePanel extends JPanel implements ActionListener
 
     public void update() {
         centerTurret = new Point(localTank.xPos() + 67, localTank.yPos() + 125);
+        centerBase = new Point(localTank.xPos() + (LOCALTANK_PNG_WIDTH / 2), localTank.yPos() + (LOCALTANK_PNG_HEIGHT / 2));
+
         mouseLoc = MouseInfo.getPointerInfo().getLocation();
         SwingUtilities.convertPointFromScreen(mouseLoc, this);
         mouseLocX = (int) mouseLoc.getX();
@@ -186,7 +194,6 @@ public class GamePanel extends JPanel implements ActionListener
         mouseDistY = mouseLocY - centerTurret.getY();
 
         mouseDegree = angleInRelation(mouseLoc, centerTurret);
-        System.out.println(mouseDegree + " "+localTank.getDegree());
 
         if(moveUp && localTank.yPos() >= 0) {
             localTank.setLocation(localTank.xPos(), localTank.yPos() - 5);
@@ -194,11 +201,11 @@ public class GamePanel extends JPanel implements ActionListener
         if(moveDown && localTank.yPos() + localTank.getHeight() <= FRAME_HEIGHT) {
             localTank.setLocation(localTank.xPos(), localTank.yPos() + 5);
         }
-        if(moveLeft && localTank.xPos() >= 0) {
-            localTank.setLocation(localTank.xPos() - 5, localTank.yPos());
+        if(rotateLeft && localTank.xPos() >= 0) {
+            localTank.setBaseDegree(localTank.getBaseDegree() - 5);
         }
-        if(moveRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
-            localTank.setLocation(localTank.xPos() + 5, localTank.yPos());
+        if(rotateRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
+            localTank.setBaseDegree(localTank.getBaseDegree() + 5);
         }
 
         this.setBackground(Color.white);
@@ -212,13 +219,16 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.setColor(Color.white);
 
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+
+
         paintLocalBase(g2D);
 
-        localTank.setDegree((int) mouseDegree);
-        g2D.rotate(Math.toRadians(localTank.getDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
+        localTank.setTurretDegree(mouseDegree);
+        g2D.rotate(Math.toRadians(localTank.getTurretDegree()), localTank.xPos() + 67, localTank.yPos() + 125);
         paintLocalTurret(g2D);
     }
     public void paintLocalBase(Graphics2D g2D) {
+        g2D.rotate(Math.toRadians(localTank.getBaseDegree()), centerBase.getX(), centerBase.getY());
         g2D.drawImage(blueTankBase, localTank.xPos(), localTank.yPos(), LOCALTANK_PNG_WIDTH, LOCALTANK_PNG_HEIGHT, null);
     }
 
@@ -231,7 +241,7 @@ public class GamePanel extends JPanel implements ActionListener
     }
 
     public void paintRemoteTurret(Graphics2D g2D) {
-        g2D.drawImage(redTankTurret, remoteTank.xPos()+33, remoteTank.yPos() - 10, 68, 176, null);
+        g2D.drawImage(redTankTurret, remoteTank.xPos() + 33, remoteTank.yPos() - 10, 68, 176, null);
     }
 
     /*

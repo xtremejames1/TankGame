@@ -1,7 +1,8 @@
 import java.awt.*;
 
 public class Tank {
-    private int x, y, mouseX, mouseY, degree;
+    private int x, y, mouseX, mouseY;
+    private double turretDegree, baseDegree;
     private int width;
     private int height;
     private Color color;
@@ -10,7 +11,8 @@ public class Tank {
         this.width = width;
         this.height = height;
         this.color = color;
-        this.degree = 0;
+        this.turretDegree = 0;
+        this.baseDegree = 0;
     }
     public int getWidth() {
         return width;
@@ -24,20 +26,24 @@ public class Tank {
     public int yPos() {
         return y;
     }
-    public void setSlope(double slope) {
-        this.slope = slope;
+
+    public void setTurretDegree(double degree) {
+        this.turretDegree = degree;
     }
-    public double getSlope() {
-        return slope;
+    public void addTurretDegree(double degree) {
+        this.turretDegree += degree;
     }
-    public void setDegree(int degree) {
-        this.degree = degree;
+    public double getTurretDegree() {
+        return turretDegree;
     }
-    public void addDegree(int degree) {
-        this.degree += degree;
+    public void setBaseDegree(double degree) {
+        this.baseDegree = degree;
     }
-    public int getDegree() {
-        return degree;
+    public void addBaseDegree(double degree) {
+        this.baseDegree += degree;
+    }
+    public double getBaseDegree() {
+        return this.baseDegree;
     }
     public void setLocation(int x, int y) {
         this.x = x;
