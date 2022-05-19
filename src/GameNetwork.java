@@ -117,7 +117,7 @@ public class GameNetwork
             tankData = data(receive).toString();
 
             game.setReceiveData(tankData);
-
+            System.out.println(tankData);
             System.out.println("marginal memory used per cycle: "+(memoryUsed()-used1));
 
         }
