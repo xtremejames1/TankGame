@@ -104,7 +104,7 @@ public class GameNetwork
         }
         System.out.println("before creation of stuff"+memoryUsed());
         serverUDP = new DatagramSocket(udp);
-        byte[] receive = new byte[48];
+        byte[] receive = new byte[96];
         DatagramPacket DpReceive = new DatagramPacket(receive, receive.length);
         System.out.println("after creation of stuff"+memoryUsed());
         long used1;
