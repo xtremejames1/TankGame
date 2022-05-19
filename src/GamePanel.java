@@ -195,22 +195,27 @@ public class GamePanel extends JPanel implements ActionListener
 
         mouseDegree = angleInRelation(mouseLoc, centerTurret);
 
-        if(moveUp && localTank.yPos() >= 0) {
-            localTank.setLocation(localTank.xPos(), localTank.yPos() - 5);
+        int speed = 5;
+        if(moveUp) {
+            localTank.setLocation(localTank.xPos() + (int) (speed * Math.sin(Math.toRadians(localTank.getBaseDegree()))), localTank.yPos() - speed * (int) Math.cos(Math.toRadians(localTank.getBaseDegree())));
         }
-        if(moveDown && localTank.yPos() + localTank.getHeight() <= FRAME_HEIGHT) {
-            localTank.setLocation(localTank.xPos(), localTank.yPos() + 5);
+        if(moveDown) {
+            localTank.setLocation(localTank.xPos() - (int) (speed * Math.sin(Math.toRadians(localTank.getBaseDegree()))), localTank.yPos() + speed * (int) Math.cos(Math.toRadians(localTank.getBaseDegree())));
         }
+
         if(rotateLeft && localTank.xPos() >= 0) {
+            mouseDegree -= localTank.getBaseDegree();
             localTank.setBaseDegree(localTank.getBaseDegree() - 5);
         }
         if(rotateRight && localTank.xPos() + localTank.getWidth() <= FRAME_WIDTH) {
+            mouseDegree -= localTank.getBaseDegree();
             localTank.setBaseDegree(localTank.getBaseDegree() + 5);
         }
 
         this.setBackground(Color.white);
         repaint();
     }
+
     @Override
     public void paint(Graphics g) {
         this.setBackground(Color.white);
@@ -219,7 +224,6 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.setColor(Color.white);
 
         g2D.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
-
 
         paintLocalBase(g2D);
 
@@ -244,11 +248,6 @@ public class GamePanel extends JPanel implements ActionListener
         g2D.drawImage(redTankTurret, remoteTank.xPos() + 33, remoteTank.yPos() - 10, 68, 176, null);
     }
 
-    /*
-    public AffineTransform rotate() {
-        return null;
-    }
-    */
     /**
      * @param e the event to be processed
      */
@@ -256,14 +255,14 @@ public class GamePanel extends JPanel implements ActionListener
     public void actionPerformed(ActionEvent e) {
         update();
     }
-        public double angleInRelation(Point mouseLoc, Point tankLoc) {
-            double angle = Math.toDegrees(Math.atan2((mouseLoc.getY() - tankLoc.getY()), mouseLoc.getX() - tankLoc.getX()));
-            angle += 90;
-            if (angle < 0) {
-                angle += 360;
-            }
-            return angle;
+    public double angleInRelation(Point mouseLoc, Point tankLoc) {
+        double angle = Math.toDegrees(Math.atan2((mouseLoc.getY() - tankLoc.getY()), mouseLoc.getX() - tankLoc.getX()));
+        angle += 90;
+        if (angle < 0) {
+            angle += 360;
         }
+        return angle;
+    }
     public void startGame()
     {
         timer = new Timer(1000/60, this);

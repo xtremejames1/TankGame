@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="Cleaned up code a bit.">
+    <list default="true" id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="A and D now rotate tank. DOES NOT WORK YET.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tank.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,7 +72,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652823204380</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="A and D now rotate tank. DOES NOT WORK YET.">
+      <created>1652845319857</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652845319857</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -91,6 +97,7 @@
     <MESSAGE value="Spinning partially working. NOT WORKING YET." />
     <MESSAGE value="Added few changes. NOT WORKING YET." />
     <MESSAGE value="Cleaned up code a bit." />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleaned up code a bit." />
+    <MESSAGE value="A and D now rotate tank. DOES NOT WORK YET." />
+    <option name="LAST_COMMIT_MESSAGE" value="A and D now rotate tank. DOES NOT WORK YET." />
   </component>
 </project>
