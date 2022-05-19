@@ -168,7 +168,10 @@ public class GameNetwork
             }
 
             buf = game.getSendData().getBytes();
+            if(ticks==0) {
                 DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
+            }
+            DpSend.setData(buf);
             
             clientUDP.send(DpSend);
             ticks++;
@@ -178,6 +181,7 @@ public class GameNetwork
     
     public StringBuilder data(byte[] a)
     {
+        sb.setLength(0);
         if (a == null)
             return null;
         int i = 0;
