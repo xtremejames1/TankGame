@@ -30,6 +30,9 @@ public class GamePanel extends JPanel implements ActionListener
     private final String LEFTR = "leftr";
     private final String UPR = "upr";
     private final String DOWNR = "downr";
+    private String tankData;
+    private String tankXString;
+    private String tankYString;
     private boolean moveUp, moveDown, moveRight, moveLeft;
     private GameInfo game;
     private GameNetwork net;
@@ -49,7 +52,7 @@ public class GamePanel extends JPanel implements ActionListener
             blueTankTurret = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/bluetankturret.png")));
             redTankTurret = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/redtankturret.png")));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
 
         leftpress = new moveAction(LEFT, 1);
@@ -137,8 +140,7 @@ public class GamePanel extends JPanel implements ActionListener
             localTank.setLocation(localTank.getX() + 5, localTank.getY());
         }
 
-        PointerInfo a = MouseInfo.getPointerInfo();
-        Point b = a.getLocation();
+        Point b = MouseInfo.getPointerInfo().getLocation();
         int mouseX = (int) b.getX();
         int mouseY = (int) b.getY();
         int tankX = localTank.getX();
@@ -147,15 +149,10 @@ public class GamePanel extends JPanel implements ActionListener
         game.setSendData("mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY);
 
         if(game.getReceiveData()!=null) {
-            String tankData = game.getReceiveData(); //Gets data that is received.
-            String tankXString = tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY")); //Finds tank coords
-            String tankYString = tankData.substring(tankData.indexOf("tY") + 2);
+            tankData = game.getReceiveData(); //Gets data that is received.
 
-            String mouseXString = tankData.substring(tankData.indexOf("mX") + 2, tankData.indexOf("mY")); //Find mouse coords
-            String mouseYString = tankData.substring(tankData.indexOf("mY") + 2, tankData.indexOf("tX"));
-
-            remoteTank.setLocation(Integer.parseInt(tankXString), Integer.parseInt(tankYString)); //set tank coords
-            remoteTank.setMouseLocation(Integer.parseInt(mouseXString), Integer.parseInt(mouseYString)); //set mouse coords
+            remoteTank.setLocation(Integer.parseInt(tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY"))), Integer.parseInt(tankData.substring(tankData.indexOf("tY") + 2))); //set tank coords
+            remoteTank.setMouseLocation(Integer.parseInt(tankData.substring(tankData.indexOf("mX") + 2, tankData.indexOf("mY"))), Integer.parseInt(tankData.substring(tankData.indexOf("mY") + 2, tankData.indexOf("tX")))); //set mouse coords
         }
         else {
             Thread.sleep(100);
