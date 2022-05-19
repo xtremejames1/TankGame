@@ -18,7 +18,7 @@ public class GameNetwork
     //TODO more modularity methods:
     // - Get and Set UDP messages
     private DatagramSocket clientUDP, serverUDP; //UDP client and server socket
-    
+    private StringBuilder sb = new StringBuilder();
     private ServerSocket socket; //TCP server socket
     private Socket clientSocket; //TCP client socket
     private BufferedReader in; //TCP in reader
@@ -105,25 +105,21 @@ public class GameNetwork
         System.out.println("before creation of stuff"+memoryUsed());
         serverUDP = new DatagramSocket(udp);
         byte[] receive = new byte[48];
-        DatagramPacket DpReceive = null;
+        DatagramPacket DpReceive = new DatagramPacket(receive, receive.length);
         System.out.println("after creation of stuff"+memoryUsed());
         long used1;
         while(true)
         {
             used1 = memoryUsed();
-            DpReceive = new DatagramPacket(receive, receive.length);
 
             serverUDP.receive(DpReceive);
 
             tankData = data(receive).toString();
 
             game.setReceiveData(tankData);
-            
-            receive = new byte[48];
 
             System.out.println("marginal memory used per cycle: "+(memoryUsed()-used1));
 
-            Thread.sleep(1000/tickrate);
         }
         
     }
@@ -162,18 +158,9 @@ public class GameNetwork
 
         clientUDP = new DatagramSocket();
         byte buf[] = null;
+        int ticks = 0;
         while (true)
         {
-            /*
-            PointerInfo a = MouseInfo.getPointerInfo();
-            Point b = a.getLocation();
-            mouseX = (int) b.getX();
-            mouseY = (int) b.getY();
-            tankX = game.getLocalTank().getX();
-            tankY = game.getLocalTank().getY();
-            */
-            //String inp = "mX"+mouseX+"mY"+mouseY+"tX"+tankX+"tY"+tankY;
-            // convert the String input into the byte array.
             while(game.getSendData()==null)
             {
                 Thread.sleep(10);
@@ -181,28 +168,28 @@ public class GameNetwork
             }
 
             buf = game.getSendData().getBytes();
-            
-            DpSend =
-                new DatagramPacket(buf, buf.length, remoteIP, udp);
+            if(ticks==0) {
+                DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
+            }
+            DpSend.setData(buf);
             
             clientUDP.send(DpSend);
-            
+            ticks++;
             Thread.sleep(1000/tickrate);
         }
     }
     
-    public static StringBuilder data(byte[] a)
+    public StringBuilder data(byte[] a)
     {
         if (a == null)
             return null;
-        StringBuilder ret = new StringBuilder();
         int i = 0;
         while (a[i] != 0)
         {
-            ret.append((char) a[i]);
+            sb.append((char) a[i]);
             i++;
         }
-        return ret;
+        return sb;
     }
     public String getIP() {
         try {
