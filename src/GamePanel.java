@@ -3,13 +3,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
 @SuppressWarnings("ALL")
-public class GamePanel extends JPanel implements ActionListener
+public class GamePanel extends JPanel implements ActionListener, MouseListener
 {
     static final int FRAME_HEIGHT = 720;
     static final int FRAME_WIDTH = 1280;
@@ -49,6 +51,7 @@ public class GamePanel extends JPanel implements ActionListener
         game = g;
         localTank = g.getLocalTank();
         remoteTank = g.getRemoteTank();
+        this.addMouseListener(this);
 
         try {
             blueTankBase = ImageIO.read(Objects.requireNonNull(getClass().getResource("/resources/bluetankbase.png")));
@@ -144,6 +147,31 @@ public class GamePanel extends JPanel implements ActionListener
         startGame();
     }
 
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        localTank.setShooting(true);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
     private class moveAction extends AbstractAction {
 
         String direction;
@@ -216,7 +244,6 @@ public class GamePanel extends JPanel implements ActionListener
         this.setBackground(Color.white);
         repaint();
     }
-
     @Override
     public void paint(Graphics g) {
         this.setBackground(Color.white);

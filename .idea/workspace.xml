@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="Tank now rotates for A and D. Issues with turret rotation still.">
+    <list default="true" id="9a77baba-d9e3-44af-928c-420182f5890c" name="Changes" comment="Tank now rotates and moves in that direction. WORKS.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GameNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Tank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Tank.java" afterDir="false" />
     </list>
@@ -88,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652928824960</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tank now rotates and moves in that direction. WORKS.">
+      <created>1653012341188</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1653012341188</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -108,6 +114,10 @@
     <MESSAGE value="Cleaned up code a bit." />
     <MESSAGE value="A and D now rotate tank. DOES NOT WORK YET." />
     <MESSAGE value="Tank now rotates for A and D. Issues with turret rotation still." />
-    <option name="LAST_COMMIT_MESSAGE" value="Tank now rotates for A and D. Issues with turret rotation still." />
+    <MESSAGE value="Tank now rotates and moves in that direction. WORKS." />
+    <option name="LAST_COMMIT_MESSAGE" value="Tank now rotates and moves in that direction. WORKS." />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/TankGame$Game.ic" NAME="Game Coverage Results" MODIFIED="1653012902656" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
