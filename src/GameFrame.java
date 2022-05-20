@@ -86,9 +86,8 @@ public class GameFrame{
         game(); //Starts game
     }
     public void game() {
-        //panel = new GamePanel(game, net); //Creates GamePanel object
-        //panel.setVisible(true);
-        //frame.setContentPane(panel);
-        game.setSendData("testing");
+        panel = new GamePanel(game, net); //Creates GamePanel object
+        panel.setVisible(true);
+        frame.setContentPane(panel);
     }
 }
