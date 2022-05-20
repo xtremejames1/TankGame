@@ -227,12 +227,12 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener
 
         mouseDegree = angleInRelation(mouseLoc, centerTurret);
 
-        game.setSendData("mX"+mouseLocX+"mY"+mouseLocY+"tX"+((int)localTank.xPos())+"tY"+((int)localTank.yPos()));
+        game.setSendData("mX"+mouseLocX+"mY"+mouseLocY+"tX"+((int)localTank.xPos())+"tY"+((int)localTank.yPos())+"e");
 
         if(game.getReceiveData()!=null) {
             tankData = game.getReceiveData(); //Gets data that is received.
 
-            remoteTank.setLocation(Integer.parseInt(tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY"))), Integer.parseInt(tankData.substring(tankData.indexOf("tY") + 2))); //set tank coords
+            remoteTank.setLocation(Integer.parseInt(tankData.substring(tankData.indexOf("tX") + 2, tankData.indexOf("tY"))), Integer.parseInt(tankData.substring(tankData.indexOf("tY") + 2, tankData.indexOf("e")))); //set tank coords
             remoteTank.setMouseLocation(Integer.parseInt(tankData.substring(tankData.indexOf("mX") + 2, tankData.indexOf("mY"))), Integer.parseInt(tankData.substring(tankData.indexOf("mY") + 2, tankData.indexOf("tX")))); //set mouse coords
         }
         else {
