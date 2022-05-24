@@ -31,7 +31,7 @@ public class GameNetwork
     private GameInfo game; //GameInfo that the GameNetwork communicates with
     
     private int type; //Game type, 0 for host, 1 for client
-    private String tankData; //data for tank
+    private String data; //data for tank
     private int tcp, udp; //TCP and UDP ports
     private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY; //Tank and mouse coordinates, WILL CHANGE LATER NOT MODULAR
 
@@ -102,22 +102,18 @@ public class GameNetwork
                 notify(); //Notifys client thread that IP has been found
             }
         }
-        System.out.println("before creation of stuff"+memoryUsed());
         serverUDP = new DatagramSocket(udp);
         byte[] receive = new byte[96];
         DatagramPacket DpReceive = new DatagramPacket(receive, receive.length);
-        System.out.println("after creation of stuff"+memoryUsed());
-        long used1;
         while(true)
         {
-            used1 = memoryUsed();
 
             serverUDP.receive(DpReceive);
 
-            tankData = data(receive).toString();
+            data = data(receive).toString();
 
-            game.setReceiveData(tankData);
-            System.out.println(tankData);
+            game.setReceiveData(game.getRName(), data);
+            System.out.println(data);
 
         }
         
@@ -154,30 +150,17 @@ public class GameNetwork
         }
         
         System.out.println("Client connection made to "+remoteIP);
+    }
 
+    public void sendMessage(String msg) throws IOException {
         clientUDP = new DatagramSocket();
         byte buf[] = null;
-        int ticks = 0;
-        while (true)
-        {
-            while(game.getSendData()==null)
-            {
-                Thread.sleep(10);
-                System.out.println("Has not received data to send");
-            }
+        buf = game.getSendData().getBytes();
+        DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
 
-            buf = game.getSendData().getBytes();
-            if(ticks==0) {
-                DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
-            }
-            DpSend.setData(buf);
-            
-            clientUDP.send(DpSend);
-            ticks++;
-            Thread.sleep(1000/tickrate);
-        }
+        clientUDP.send(DpSend);
     }
-    
+
     public StringBuilder data(byte[] a)
     {
         sb.setLength(0);

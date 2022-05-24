@@ -47,7 +47,7 @@ public class GameInfo
     public String getReceiveData() {
         return receiveData;
     }
-    public void setReceiveData(String data) {
-        receiveData = data;
+    public void setReceiveData(String name,String chat) {
+        receiveData+=(name+": "+chat+"\n");
     }
 }
