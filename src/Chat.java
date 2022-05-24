@@ -11,7 +11,6 @@ public class Chat {
     private JButton backButton;
 
     public Chat(JFrame f, GameNetwork n, GameFrame gf) {
-        f.setContentPane(panel1);
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
