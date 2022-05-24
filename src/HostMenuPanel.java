@@ -29,8 +29,4 @@ public class HostMenuPanel {
             }
         });
     }
-
-    public JButton getBackButton() {
-        return backButton;
-    }
 }

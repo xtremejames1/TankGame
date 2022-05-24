@@ -12,7 +12,6 @@ public class Chat {
 
     public Chat(JFrame f, GameNetwork n, GameFrame gf) {
         f.setContentPane(panel1);
-        f.setVisible(true);
         button1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

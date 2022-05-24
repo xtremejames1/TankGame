@@ -12,7 +12,6 @@ public class GameFrame{
     private JFrame frame = new JFrame(); //creates the frame
     static final int FRAME_HEIGHT = 720; //should be changed in settings later
     static final int FRAME_WIDTH = 1280; //should be changed in settings later
-    private GamePanel panel; //used for the actual game
     private GameNetwork net; //game network
     private GameInfo game; //the game information
 
