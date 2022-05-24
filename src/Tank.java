@@ -4,7 +4,6 @@ import java.awt.event.MouseListener;
 
 public class Tank {
     private double x, y;
-    private int mouseX, mouseY;
     private boolean shooting;
     private double turretDegree, baseDegree;
     private int width;
@@ -39,11 +38,6 @@ public class Tank {
     public void setTurretDegree(double degree) {
         this.turretDegree = degree;
     }
-
-    public void addTurretDegree(double degree) {
-        this.turretDegree += degree;
-    }
-
     public double getTurretDegree() {
         return turretDegree;
     }
@@ -71,10 +65,5 @@ public class Tank {
     public void setLocation(double x, double y) {
         this.x = x;
         this.y = y;
-    }
-
-    public void setMouseLocation(int x, int y) {
-        mouseX = x;
-        mouseY = y;
     }
 }

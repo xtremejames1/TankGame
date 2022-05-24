@@ -7,7 +7,7 @@ public class MainMenu {
     private JButton xButton;
     private JButton settingsButton;
     private JTextField playerNameTextField;
-    private JButton hostButton;
+    private JButton startGame;
     private JButton connectButton;
     private JLabel title;
 
@@ -15,22 +15,10 @@ public class MainMenu {
         f.setContentPane(panel);
         f.setVisible(true);
 
-        hostButton.addActionListener(new ActionListener() {
+        startGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(!playerNameTextField.getText().equals("")) {
-                    g.setName(playerNameTextField.getText());
-                    gf.host();
-                }
-            }
-        });
-        connectButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!playerNameTextField.getText().equals("")) {
-                    g.setName(playerNameTextField.getText());
-                    gf.client();
-                }
+
             }
         });
     }

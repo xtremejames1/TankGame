@@ -5,9 +5,8 @@ import java.util.Scanner;
 public class Game
 {
     public static void main(String[] args) {
-        Tank bTank = new Tank(50,50, Color.blue);
-        Tank rTank = new Tank(50,50, Color.red);
-        GameInfo game = new GameInfo(bTank, rTank);
+        Tank playerTank = new Tank(50,50, Color.blue);
+        GameInfo game = new GameInfo(playerTank);
 
         GameFrame gameFrame = new GameFrame(game);
     }
