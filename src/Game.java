@@ -40,11 +40,20 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
-            Chat ch = new Chat(game);
-
+            Chat ch = new Chat(game, net);
+            Runnable update = new Runnable() {
+                @Override
+                public void run() {
+                    while(true) {
+                        ch.update();
+                    }
+                }
+            };
+            Thread t = new Thread(update, "chat update");
+            t.start();
             while(true) {
                 if(game.getClientFound()) {
-                    ch.update();
+
                     if(sc.hasNext()) {
                         chat = sc.nextLine();
                         net.sendMessage(chat);
@@ -75,14 +84,24 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
-            Chat ch = new Chat(game);
+            Chat ch = new Chat(game, net);
+
+            Runnable update = new Runnable() {
+                @Override
+                public void run() {
+                    while(true) {
+                        ch.update();
+                    }
+                }
+            };
+            Thread t = new Thread(update, "chat update");
+            t.start();
             while(true) {
                 if(sc.hasNext()) {
                     chat = sc.nextLine();
                     net.sendMessage(chat);
                     game.addMsg(game.getName(), chat);
                 }
-                ch.update();
             }
         }
 
