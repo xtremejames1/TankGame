@@ -45,7 +45,12 @@ public class Game
                         oldData = game.getReceiveData();
                     }
                     chat+=br.read();
-
+                    net.sendMessage(chat);
+                }
+                else {
+                    System.out.println("\033[H\033[2J");
+                    System.out.flush();
+                    System.out.println("Waiting for client...");
                 }
             }
         }
@@ -75,6 +80,7 @@ public class Game
                     oldData = game.getReceiveData();
                 }
                 chat+=br.read();
+                net.sendMessage(chat);
             }
         }
 
