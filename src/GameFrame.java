@@ -51,16 +51,20 @@ public class GameFrame{
 
         client.start(); //starts client thread
         server.start(); //starts server thread
-
+        Chat c = new Chat(frame, net, this);
+            /*
         ActionListener l = new ActionListener() { //checks if that the timer is running defined later
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(game.getClientFound()) //if found remote client, it starts the game
+                if(game.getClientFound()) { //if found remote client, it starts the game
                     game();
+                }
             }
         };
         Timer timer = new Timer(100, l); //creates a timer that repeats 60 times every second
         timer.start(); //starts timer
+
+             */
     }
     public void client() {
         ClientMenu c = new ClientMenu(frame, net, this); //creates ClientMenu object
@@ -82,9 +86,9 @@ public class GameFrame{
         client.start(); //Starts client thread
         server.start(); //Starts server thread
 
-        game(); //Starts game
+        Chat c = new Chat(frame, net, this);
     }
     public void game() {
-        Chat chat = new Chat(frame, net, this); //Creates GamePanel object
+        Chat c = new Chat(frame, net, this);
     }
 }

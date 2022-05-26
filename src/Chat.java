@@ -3,15 +3,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class Chat {
+public class Chat{
     private JTextField textField1;
-    private JPanel panel1;
     private JTextArea TextArea;
-    private JButton button1;
+    private JButton sendButton;
     private JButton backButton;
+    private JPanel panel1;
 
     public Chat(JFrame f, GameNetwork n, GameFrame gf) {
-        button1.addActionListener(new ActionListener() {
+        sendButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(textField1.getText()!=null) {
@@ -29,6 +29,8 @@ public class Chat {
                 gf.mainMenu();
             }
         });
+        f.setContentPane(panel1);
+        f.setVisible(true);
     }
 
     public void addChat(String name, String chat) {
