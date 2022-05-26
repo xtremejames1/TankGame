@@ -70,10 +70,11 @@ public class Game
             ChatThread ch = new ChatThread(game);
             ch.start();
             while(true) {
-                chat = sc.nextLine();
-                net.sendMessage(chat);
-                game.addMsg(game.getName(), chat);
-
+                if(sc.hasNext()) {
+                    chat = sc.nextLine();
+                    net.sendMessage(chat);
+                    game.addMsg(game.getName(), chat);
+                }
             }
         }
 

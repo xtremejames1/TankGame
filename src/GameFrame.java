@@ -51,7 +51,6 @@ public class GameFrame{
 
         client.start(); //starts client thread
         server.start(); //starts server thread
-        Chat c = new Chat(frame, net, this);
             /*
         ActionListener l = new ActionListener() { //checks if that the timer is running defined later
             @Override
@@ -86,9 +85,7 @@ public class GameFrame{
         client.start(); //Starts client thread
         server.start(); //Starts server thread
 
-        Chat c = new Chat(frame, net, this);
     }
     public void game() {
-        Chat c = new Chat(frame, net, this);
     }
 }
