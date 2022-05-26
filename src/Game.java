@@ -37,15 +37,16 @@ public class Game
             String ip = sc.nextLine();
             GameNetwork net = new GameNetwork(type, game, 1235, 1234, ip);
 
-
+            System.out.println("Network Created");
             ClientThread client = new ClientThread(net); //Creates client thread
             ServerThread server = new ServerThread(net); //Creates server thread
 
             client.start(); //Starts client thread
             server.start(); //Starts server thread
 
+
             while(true) {
-                System.out.println("\033[H\033[2J");
+                //System.out.println("\033[H\033[2J");
             }
         }
 
