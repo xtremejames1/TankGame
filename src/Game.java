@@ -11,6 +11,11 @@ import java.util.Scanner;
 @SuppressWarnings("unused")
 public class Game
 {
+    private JFrame frame = new JFrame();
+    private JTextArea text;
+    private JScrollPane scrollPane;
+    private JPanel panel;
+    private JLabel label;
     public static void main(String[] args) throws IOException {
         GameInfo game = new GameInfo(new Tank(50,50, Color.blue), new Tank(50,50, Color.red));
 
@@ -35,13 +40,16 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
-            ChatThread ch = new ChatThread(game);
-            ch.start();
+            Chat ch = new Chat(game);
+
             while(true) {
                 if(game.getClientFound()) {
-                    chat = sc.nextLine();
-                    net.sendMessage(chat);
-                    game.addMsg(game.getName(), chat);
+                    ch.update();
+                    if(sc.hasNext()) {
+                        chat = sc.nextLine();
+                        net.sendMessage(chat);
+                        game.addMsg(game.getName(), chat);
+                    }
                 }
                 else {
                     System.out.println("\033[H\033[2J");
@@ -67,14 +75,14 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
-            ChatThread ch = new ChatThread(game);
-            ch.start();
+            Chat ch = new Chat(game);
             while(true) {
                 if(sc.hasNext()) {
                     chat = sc.nextLine();
                     net.sendMessage(chat);
                     game.addMsg(game.getName(), chat);
                 }
+                ch.update();
             }
         }
 

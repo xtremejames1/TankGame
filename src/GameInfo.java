@@ -8,7 +8,8 @@ public class GameInfo
 {
     private final Tank localTank, remoteTank;
     private boolean clientFound;
-    private String name, rName, sendData, receiveData;
+    private String name, rName, sendData;
+    private String receiveData = "";
     private int type;
     
     /**
