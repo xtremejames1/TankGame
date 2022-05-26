@@ -2,13 +2,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
 @SuppressWarnings("unused")
 public class Game
 {
-    public static void main(String[] args) throws UnknownHostException {
+    public static void main(String[] args) throws IOException {
         GameInfo game = new GameInfo(new Tank(50,50, Color.blue), new Tank(50,50, Color.red));
 
         //GameFrame gameFrame = new GameFrame(game);
@@ -28,11 +31,20 @@ public class Game
             client.start(); //starts client thread
             server.start(); //starts server thread
 
+            String oldData = game.getReceiveData();
+            Scanner chatsc = new Scanner(System.in);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String chat = "";
             while(true) {
                 if(game.getClientFound()) {
-                    System.out.println("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println(game.getReceiveData());
+                    if(oldData!=game.getReceiveData()) {
+                        System.out.println("\033[H\033[2J");
+                        System.out.flush();
+                        System.out.println(game.getReceiveData());
+                        System.out.println(chat);
+                        oldData = game.getReceiveData();
+                    }
+                    chat+=br.read();
 
                 }
             }
@@ -52,16 +64,17 @@ public class Game
 
             String oldData = game.getReceiveData();
             Scanner chatsc = new Scanner(System.in);
+            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+            String chat = "";
             while(true) {
                 if(oldData!=game.getReceiveData()) {
                     System.out.println("\033[H\033[2J");
                     System.out.flush();
                     System.out.println(game.getReceiveData());
-                    System.out.println();
+                    System.out.println(chat);
                     oldData = game.getReceiveData();
                 }
-                System.out.println(chatsc.next()!=null);
-
+                chat+=br.read();
             }
         }
 
