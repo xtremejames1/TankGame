@@ -156,7 +156,7 @@ public class GameNetwork
     public void sendMessage(String msg) throws IOException {
         clientUDP = new DatagramSocket();
         byte buf[] = null;
-        buf = game.getSendData().getBytes();
+        buf = msg.getBytes();
         DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
 
         clientUDP.send(DpSend);
