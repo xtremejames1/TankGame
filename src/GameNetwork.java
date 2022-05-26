@@ -112,7 +112,7 @@ public class GameNetwork
 
             data = data(receive).toString();
 
-            game.setReceiveData(game.getRName(), data);
+            game.addMsg(game.getRName(), data);
             System.out.println(data);
 
         }
@@ -150,6 +150,7 @@ public class GameNetwork
         }
         
         System.out.println("Client connection made to "+remoteIP);
+        game.addData("Chat with "+game.getRName()+" with ip "+remoteIP);
     }
 
     public void sendMessage(String msg) throws IOException {

@@ -33,8 +33,9 @@ public class Game
             }
         }
         if(type == 1) {
+            Scanner ipsc = new Scanner(System.in);
             System.out.println("What ip");
-            String ip = sc.nextLine();
+            String ip = ipsc.nextLine();
             GameNetwork net = new GameNetwork(type, game, 1235, 1234, ip);
 
             System.out.println("Network Created");
