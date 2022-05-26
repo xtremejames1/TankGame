@@ -13,6 +13,9 @@ public class Game
 
         //GameFrame gameFrame = new GameFrame(game);
         Scanner sc = new Scanner(System.in);
+        System.out.println("What is your name?");
+        String name = sc.nextLine();
+        game.setName(name);
         System.out.println("host or client (0 or 1)");
         int type = sc.nextInt();
 
@@ -28,7 +31,9 @@ public class Game
             while(true) {
                 if(game.getClientFound()) {
                     System.out.println("\033[H\033[2J");
+                    System.out.flush();
                     System.out.println(game.getReceiveData());
+
                 }
             }
         }
@@ -45,9 +50,18 @@ public class Game
             client.start(); //Starts client thread
             server.start(); //Starts server thread
 
-
+            String oldData = game.getReceiveData();
+            Scanner chatsc = new Scanner(System.in);
             while(true) {
-                //System.out.println("\033[H\033[2J");
+                if(oldData!=game.getReceiveData()) {
+                    System.out.println("\033[H\033[2J");
+                    System.out.flush();
+                    System.out.println(game.getReceiveData());
+                    System.out.println();
+                    oldData = game.getReceiveData();
+                }
+                System.out.println(chatsc.next()!=null);
+
             }
         }
 
