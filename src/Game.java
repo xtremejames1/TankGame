@@ -44,8 +44,7 @@ public class Game
                         System.out.println(chat);
                         oldData = game.getReceiveData();
                     }
-                    chat+=br.read();
-                    net.sendMessage(chat);
+                    net.sendMessage(chatsc.nextLine());
                 }
                 else {
                     System.out.println("\033[H\033[2J");
@@ -79,8 +78,7 @@ public class Game
                     System.out.println(chat);
                     oldData = game.getReceiveData();
                 }
-                chat+=br.read();
-                net.sendMessage(chat);
+                net.sendMessage(chatsc.nextLine());
             }
         }
 
