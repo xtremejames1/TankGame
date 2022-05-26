@@ -35,16 +35,13 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
+            ChatThread ch = new ChatThread(game);
+            ch.start();
             while(true) {
                 if(game.getClientFound()) {
-                    if(oldData!=game.getReceiveData()) {
-                        System.out.println("\033[H\033[2J");
-                        System.out.flush();
-                        System.out.println(game.getReceiveData());
-                        System.out.println(chat);
-                        oldData = game.getReceiveData();
-                    }
-                    net.sendMessage(chatsc.nextLine());
+                    chat = sc.nextLine();
+                    net.sendMessage(chat);
+                    game.addMsg(game.getName(), chat);
                 }
                 else {
                     System.out.println("\033[H\033[2J");
@@ -70,15 +67,13 @@ public class Game
             Scanner chatsc = new Scanner(System.in);
             BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
             String chat = "";
+            ChatThread ch = new ChatThread(game);
+            ch.start();
             while(true) {
-                if(oldData!=game.getReceiveData()) {
-                    System.out.println("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println(game.getReceiveData());
-                    System.out.println(chat);
-                    oldData = game.getReceiveData();
-                }
-                net.sendMessage(chatsc.nextLine());
+                chat = sc.nextLine();
+                net.sendMessage(chat);
+                game.addMsg(game.getName(), chat);
+
             }
         }
 
