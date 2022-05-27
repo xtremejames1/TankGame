@@ -1,26 +1,22 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class Chat{
-    private GameInfo game;
-    private JFrame frame = new JFrame();
-    private JTextArea text;
-    private JScrollPane scrollPane;
-    private JPanel panel;
-    private JLabel label;
-    private JTextField input;
-    private GameNetwork net;
+    private final GameInfo game;
+    private final JFrame frame = new JFrame();
+    private final JTextArea text;
+    private final JScrollPane scrollPane;
+    private final JTextField input;
+    private final GameNetwork net;
     private String oldChat = "";
     public Chat(GameInfo g, GameNetwork n) {
         game = g;
         net = n;
-        panel = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new GridBagLayout());
 
-        label = new JLabel(game.getRName());
-        label.setPreferredSize(new Dimension(1280, 30));
+        JLabel title = new JLabel(game.getRName());
+        title.setPreferredSize(new Dimension(1280, 30));
 
         text = new JTextArea();
         text.setEditable(false);
@@ -35,7 +31,7 @@ public class Chat{
         c.gridwidth = GridBagConstraints.REMAINDER;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridy=0;
-        panel.add(label, c);
+        panel.add(title, c);
         c.gridy=1;
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 1.0;
@@ -45,21 +41,18 @@ public class Chat{
         c.fill=GridBagConstraints.HORIZONTAL;
         c.weighty = 0.1;
         panel.add(input);
-        input.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(!input.getText().equals("")) {
-                        String chat = input.getText();
-                        input.setText("");
-                        game.addMsg(game.getName(), chat);
-                        try {
-                            net.sendMessage(chat);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
+        input.addActionListener(e -> {
+            if(!input.getText().equals("")) {
+                String chat = input.getText();
+                input.setText("");
+                game.addMsg(game.getName(), chat);
+                try {
+                    net.sendMessage(chat);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
-            });
+            }
+        });
                 frame.setSize(1280, 720);
         frame.setTitle("JamesChat");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

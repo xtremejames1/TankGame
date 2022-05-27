@@ -3,21 +3,16 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.PrintWriter;
-import java.awt.PointerInfo;
-import java.awt.MouseInfo;
-import java.awt.Point;
 import java.util.Arrays;
 
 /**
  * Adds networking functionality to the game
  *
  * @author James Xiao
- * @version 1
+ * @version 05/26/2022
  */
 public class GameNetwork
 {
-    //TODO more modularity methods:
-    // - Get and Set UDP messages
     private DatagramSocket clientUDP, serverUDP; //UDP client and server socket
     private StringBuilder sb = new StringBuilder();
     private ServerSocket socket; //TCP server socket
@@ -25,7 +20,6 @@ public class GameNetwork
     private BufferedReader in; //TCP in reader
     private PrintWriter out; //TCP out writer
     private DatagramPacket DpSend;
-    private int tickrate; //Tickrate of the network
     
     private InetAddress remoteIP; //Remote IP Address
     
@@ -34,7 +28,6 @@ public class GameNetwork
     private int type; //Game type, 0 for host, 1 for client
     private String data; //data for tank
     private int tcp, udp; //TCP and UDP ports
-    private int tankX, tankY, mouseX, mouseY, rTankX, rTankY, rMouseX, rMouseY; //Tank and mouse coordinates, WILL CHANGE LATER NOT MODULAR
 
     /**
      * Constructor for the game network
@@ -47,7 +40,6 @@ public class GameNetwork
     {
         game = g;
         type=t;
-        tickrate = 64;
         tcp = tcpport;
         udp = udpport;
         System.out.println("Created type "+type+" Network with ports "+tcpport+" and "+udpport);
@@ -65,7 +57,6 @@ public class GameNetwork
     public GameNetwork(int t, GameInfo g, int tcpport, int udpport, String ip) throws UnknownHostException {
         game = g;
         type=t;
-        tickrate = 64;
         tcp = tcpport;
         udp = udpport;
         remoteIP = InetAddress.getByName(ip);
@@ -115,7 +106,6 @@ public class GameNetwork
             Arrays.fill(receive, (byte)0);
 
         }
-        
     }
     
     public void client() throws IOException,InterruptedException
@@ -147,14 +137,11 @@ public class GameNetwork
                 System.out.println("Client thread received IP.");
             }
         }
-        
         System.out.println("Client connection made to "+remoteIP);
     }
-
     public void sendMessage(String msg) throws IOException {
         clientUDP = new DatagramSocket();
-        byte buf[] = null;
-        buf = msg.getBytes();
+        byte buf[] = msg.getBytes();
         DpSend = new DatagramPacket(buf, buf.length, remoteIP, udp);
 
         clientUDP.send(DpSend);
@@ -179,9 +166,6 @@ public class GameNetwork
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         }
-    }
-    private static long memoryUsed() {
-        return Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
     }
     public int getTCP() {
         return tcp;

@@ -1,13 +1,13 @@
 
 /**
- * Write a description of class ClientThread here.
+ * Thread that runs the client-side TCP networking.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author James Xiao
+ * @version 05/26/2022
  */
 public class ClientThread extends Thread
 {
-    private GameNetwork net;
+    private final GameNetwork net;
     
     public ClientThread(GameNetwork n)
     {

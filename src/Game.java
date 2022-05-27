@@ -1,25 +1,16 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.UnknownHostException;
 import java.util.Scanner;
 
-@SuppressWarnings("unused")
+//TODO:
+// - exit chat and check if tcp still connected
+// - Graphics for login
+// - save previous connections?
+
 public class Game
 {
-    private JFrame frame = new JFrame();
-    private JTextArea text;
-    private JScrollPane scrollPane;
-    private JPanel panel;
-    private JLabel label;
     public static void main(String[] args) throws IOException {
-        GameInfo game = new GameInfo(new Tank(50,50, Color.blue), new Tank(50,50, Color.red));
+        GameInfo game = new GameInfo();
 
-        //GameFrame gameFrame = new GameFrame(game);
         Scanner sc = new Scanner(System.in);
         System.out.println("What is your name?");
         String name = sc.nextLine();
@@ -36,26 +27,17 @@ public class Game
             client.start(); //starts client thread
             server.start(); //starts server thread
 
-            String chat = "";
             while(true) {
                 if(game.getClientFound()) {
                     Chat ch = new Chat(game, net);
-                    Runnable update = new Runnable() {
-                        @Override
-                        public void run() {
-                            while(true) {
-                                ch.update();
-                            }
+                    Runnable update = () -> {
+                        while(true) {
+                            ch.update();
                         }
                     };
                     Thread t = new Thread(update, "chat update");
                     t.start();
                     break;
-                }
-                else {
-                    System.out.println("\033[H\033[2J");
-                    System.out.flush();
-                    System.out.println("Waiting for client...");
                 }
             }
         }
@@ -74,12 +56,9 @@ public class Game
 
             Chat ch = new Chat(game, net);
 
-            Runnable update = new Runnable() {
-                @Override
-                public void run() {
-                    while(true) {
-                        ch.update();
-                    }
+            Runnable update = () -> {
+                while(true) {
+                    ch.update();
                 }
             };
             Thread t = new Thread(update, "chat update");
