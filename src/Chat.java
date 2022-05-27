@@ -13,12 +13,14 @@ public class Chat{
     private JLabel label;
     private JTextField input;
     private GameNetwork net;
+    private String oldChat = "";
     public Chat(GameInfo g, GameNetwork n) {
         game = g;
         net = n;
         panel = new JPanel(new GridBagLayout());
 
-        label = new JLabel("Waiting for connection...");
+        label = new JLabel(game.getRName());
+        label.setPreferredSize(new Dimension(1280, 30));
 
         text = new JTextArea();
         text.setEditable(false);
@@ -27,7 +29,7 @@ public class Chat{
         scrollPane.setPreferredSize(new Dimension(1280, 720));
 
         input = new JTextField();
-        input.setPreferredSize((new Dimension(1280, 15)));
+        input.setPreferredSize((new Dimension(1280, 30)));
 
         GridBagConstraints c = new GridBagConstraints();
         c.gridwidth = GridBagConstraints.REMAINDER;
@@ -46,7 +48,7 @@ public class Chat{
         input.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    if(input.getText()!=null) {
+                    if(!input.getText().equals("")) {
                         String chat = input.getText();
                         input.setText("");
                         game.addMsg(game.getName(), chat);
@@ -62,13 +64,17 @@ public class Chat{
         frame.setTitle("JamesChat");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.add(panel);
-        frame.setResizable(true);
+        frame.setResizable(false);
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
     }
     public void update() {
         text.setText(game.getReceiveData());
-        label.setText(game.getRName());
+        if(!oldChat.equals(text.getText())) {
+            JScrollBar vertical = scrollPane.getVerticalScrollBar();
+            vertical.setValue( vertical.getMaximum() );
+            oldChat = text.getText();
+        }
         frame.pack();
     }
 

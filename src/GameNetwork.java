@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import java.awt.PointerInfo;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.util.Arrays;
 
 /**
  * Adds networking functionality to the game
@@ -103,17 +104,15 @@ public class GameNetwork
             }
         }
         serverUDP = new DatagramSocket(udp);
-        byte[] receive = new byte[96];
+        byte[] receive = new byte[65535];
         DatagramPacket DpReceive = new DatagramPacket(receive, receive.length);
         while(true)
         {
-
             serverUDP.receive(DpReceive);
-
             data = data(receive).toString();
-
             game.addMsg(game.getRName(), data);
             System.out.println(data);
+            Arrays.fill(receive, (byte)0);
 
         }
         
@@ -150,7 +149,6 @@ public class GameNetwork
         }
         
         System.out.println("Client connection made to "+remoteIP);
-        game.addData("Chat with "+game.getRName()+" with ip "+remoteIP);
     }
 
     public void sendMessage(String msg) throws IOException {
